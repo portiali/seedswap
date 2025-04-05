@@ -2,10 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import Signup from './Signup';
-import Login from './Login';
-import AvatarCustomization from './AvatarCustomization';
-import HomePage from './HomePage';
+// import Signup from './Signup';
+// import Login from './Login';
+// import AvatarCustomization from './AvatarCustomization';
+// import HomePage from './HomePage';
+import Garden from './pages/Home/Garden';
+import SeedBank from './pages/Home/SeedBank';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,6 +35,8 @@ function App() {
         >
           Learn React
         </a>
+        <Garden/>
+        <SeedBank/>
       </header>
     </div>
   );

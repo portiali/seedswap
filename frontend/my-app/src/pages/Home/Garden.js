@@ -1,20 +1,19 @@
 import { useState } from "react";
+import g from "./garden.png";
 
 function Garden() {
   return (
     <div className="Garden">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Garden
-        </p>
+        <p class="text-lg italic">Your Garden</p>
+        <img src={g} className="garden-image" alt="garden image" />
+        
         <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
         </a>
       </header>
     </div>
@@ -22,3 +21,4 @@ function Garden() {
 }
 
 export default Garden;
+
