@@ -16,7 +16,7 @@
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: (Coming soon / React-based?)
+- **Frontend**: React
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB (Mongoose)
 - **Authentication**: Basic login system (with plans to add Auth0 or JWT)
