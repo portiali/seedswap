@@ -8,8 +8,8 @@ function SocialPage() {
   const navigate = useNavigate(); 
   return (
     <div className="home-page">
-      <header className="socials-header">
-        <h1>Socials</h1>
+      <header className="social-header">
+        <h1>Marketplace</h1>
       </header>
       
       <div className="back-btn-container">

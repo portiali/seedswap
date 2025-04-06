@@ -6,6 +6,7 @@ import seed2 from "../../images/tomato-packet.png";
 import seed3 from "../../images/sunflower-packet.png";
 import seed4 from "../../images/cabbage-packet.png";
 import seed5 from "../../images/carrot-packet.png";
+import crate from "../../images/crate.png";
 
 function SeedPostings() {
     const seedPostings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]; // Sample data for seed postings
@@ -24,17 +25,17 @@ function SeedPostings() {
 
     return (
       <div className="seed-postings">
-      <div className="grid-container">
-        {seedPostings.map((post, index) => {
-          const assignedImage = seedImages[index % seedImages.length]; // Deterministic image based on index
-          return (
-            <div key={index} className="seed-posting" onClick={() => handleClick({ post, image: assignedImage })}>
-              <img src={assignedImage} alt={`Seed ${index}`} className="seed-thumbnail" />
-              <p>seed post {post}</p>
-            </div>
-          );
-        })}
-      </div>
+        <div className="grid-container">
+          {seedPostings.map((post, index) => {
+            const assignedImage = seedImages[index % seedImages.length]; // Deterministic image based on index
+            return (
+              <div key={index} className="seed-posting" onClick={() => handleClick({ post, image: assignedImage })}>
+                <img src={assignedImage} alt={`Seed ${index}`} className="seed-thumbnail" />
+                <p>seed post {post}</p>
+              </div>
+            );
+          })}
+        </div>
 
       {selectedPost !== null && (
         <div className="popup-overlay" onClick={closeModal}>

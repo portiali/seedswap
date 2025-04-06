@@ -1,10 +1,12 @@
 .profile {
+  width: 100vw;
   display: flex; 
   justify-content: center; /* Center items horizontally */
-  align-items: center;     /* Center items vertically */
+  align-items: stretch;     /* Center items vertically */
+  gap: 32px;
   flex-direction: row;  /* Stack SeedBank and Garden vertically */
   background-color: rgb(255, 209, 221); /* Light background color */
-  padding: 20px;
+  padding: 40px;
 }
 
 .seed-bank {
