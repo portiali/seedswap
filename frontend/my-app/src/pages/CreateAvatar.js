@@ -4,6 +4,7 @@ import catImage from '../images/cat.png';
 import dogImage from '../images/dog.png';
 import bearImage from '../images/bear.png';
 import { useNavigate } from 'react-router-dom';
+import './styles/CreateAvatar.css'; // Import the CSS file
 
 const avatarList = [
   { name: 'Rabbit', image: rabbitImage },
@@ -55,88 +56,93 @@ const CreateAvatar = () => {
   };
 
   const handleNextPage = () => {
-    navigate('/profile'); 
+    navigate('/profile');
   };
 
   const selected = avatarList[index];
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 min-h-screen bg-green-50">
-      <h1 className="text-2xl font-bold mb-6">Choose Your Animal Avatar</h1>
+    <div className="create-avatar-container">
+      <h1 className="create-avatar-header">Choose Your Animal Avatar</h1>
 
       {/* Avatar Confirmation */}
       {!avatarConfirmed ? (
         <div>
-          <div> 
+          <div className="avatar-selection-container">
             <button
-            onClick={handlePrev}
-            className="text-4xl text-gray-600 hover:text-black"
+              onClick={handlePrev}
+              className="arrow-buttons"
             >
               ←
             </button>
 
             <button
               onClick={handleNext}
-              className="text-4xl text-gray-600 hover:text-black"
+              className="arrow-buttons"
             >
               →
             </button>
           </div>
-          <img
-            src={selected.image}
-            alt={selected.name}
-            className="w-64 h-64 object-contain"
-          />
+          <div className="avatar-image-container">
+            <img
+              src={selected.image}
+              alt={selected.name}
+              className="avatar-image"
+            />
+            <p className="avatar-name">{selected.name}</p>
+          </div>
           <button
             onClick={handleConfirmAvatar}
-            className="mt-8 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg text-lg"
+            className="confirm-avatar-button"
           >
             Confirm Avatar
           </button>
         </div>
       ) : (
-        <div className="text-center mt-10">
-          <p className="text-xl">You chose the {selected.name}!</p>
+        <div className="avatar-confirmed-container">
+          <p className="avatar-confirmed-text">You chose the {selected.name}!</p>
           <img
             src={selected.image}
             alt={selected.name}
-            className="w-40 h-40 mx-auto mt-4"
+            className="avatar-confirmed-image"
           />
 
           <button
             onClick={handleEditAvatar}
-            className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg"
+            className="edit-avatar-button"
           >
             Edit Avatar
           </button>
         </div>
       )}
 
+      <h1 className="create-avatar-header">Set Your Location</h1>
+
       {/* Location Confirmation */}
       {!locationConfirmed ? (
-        <div className="mt-8">
-          <p className="text-lg">Please enter your location:</p>
+        <div className="location-section">
+          <p className="location-text">Please enter your location:</p>
           <input
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="mt-2 p-2 border border-gray-300 rounded-lg"
+            className="location-input"
             placeholder="Enter your location"
           />
           <button
             onClick={handleConfirmLocation}
-            className="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg"
+            className="confirm-location-button"
           >
             Confirm Location
           </button>
         </div>
       ) : (
-        <div className="mt-8">
-          <p className="text-lg">Location confirmed: {location}</p>
+        <div className="location-confirmed-container">
+          <p className="location-confirmed-text">Location confirmed: {location}</p>
 
           <button
             onClick={handleEditLocation}
-            className="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-lg"
+            className="edit-location-button"
           >
             Edit Location
           </button>
@@ -147,12 +153,12 @@ const CreateAvatar = () => {
       {avatarConfirmed && locationConfirmed && (
         <button
           onClick={handleNextClick}
-          className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg"
+          className="next-button"
+          disabled={handleNextDisabled}
         >
           Next
         </button>
       )}
-
     </div>
   );
 };

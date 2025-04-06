@@ -1,0 +1,169 @@
+/* General page styling */
+.create-avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: #f0fdf4; /* Tailwind bg-green-50 */
+  }
+  
+  /* Header styles */
+  .create-avatar-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Avatar selection section */
+  .avatar-selection-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .arrow-buttons {
+    font-size: 2.5rem;
+    color: #4b5563; /* Tailwind text-gray-600 */
+    margin: 0 1rem;
+  }
+  
+  .arrow-buttons:hover {
+    color: #111827; /* Tailwind text-black */
+  }
+  
+  .avatar-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .avatar-image {
+    width: 16rem;
+    height: 16rem;
+    object-fit: contain;
+  }
+  
+  .avatar-name {
+    font-size: 1.125rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Avatar confirmation button */
+  .confirm-avatar-button {
+    margin-top: 2rem;
+    background-color: #10b981; /* Tailwind bg-green-500 */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    cursor: pointer;
+  }
+  
+  .confirm-avatar-button:hover {
+    background-color: #059669; /* Tailwind bg-green-600 */
+  }
+  
+  /* Avatar confirmed section */
+  .avatar-confirmed-container {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+  
+  .avatar-confirmed-text {
+    font-size: 1.25rem;
+  }
+  
+  .avatar-confirmed-image {
+    width: 10rem;
+    height: 10rem;
+    margin-top: 1rem;
+  }
+  
+  /* Edit Avatar button */
+  .edit-avatar-button {
+    margin-top: 1rem;
+    background-color: #3b82f6; /* Tailwind bg-blue-500 */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .edit-avatar-button:hover {
+    background-color: #2563eb; /* Tailwind bg-blue-600 */
+  }
+  
+  /* Location section */
+  .location-section {
+    margin-top: 2rem;
+  }
+  
+  .location-text {
+    font-size: 1.125rem;
+  }
+  
+  .location-input {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db; /* Tailwind border-gray-300 */
+    border-radius: 0.375rem;
+  }
+  
+  .confirm-location-button {
+    margin-top: 1rem;
+    background-color: #3b82f6; /* Tailwind bg-blue-500 */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .confirm-location-button:hover {
+    background-color: #2563eb; /* Tailwind bg-blue-600 */
+  }
+  
+  /* Location confirmed section */
+  .location-confirmed-container {
+    margin-top: 2rem;
+  }
+  
+  .location-confirmed-text {
+    font-size: 1.125rem;
+  }
+  
+  .edit-location-button {
+    margin-top: 1rem;
+    background-color: #f59e0b; /* Tailwind bg-yellow-500 */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .edit-location-button:hover {
+    background-color: #d97706; /* Tailwind bg-yellow-600 */
+  }
+  
+  /* Next button (disabled when avatar or location are not confirmed) */
+  .next-button {
+    margin-top: 2rem;
+    background-color: #2563eb; /* Tailwind bg-blue-500 */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .next-button:hover {
+    background-color: #1d4ed8; /* Tailwind bg-blue-600 */
+  }
+  
+  /* Disabled Next button */
+  .next-button:disabled {
+    background-color: #d1d5db; /* Tailwind bg-gray-300 */
+    cursor: not-allowed;
+  }
+  
