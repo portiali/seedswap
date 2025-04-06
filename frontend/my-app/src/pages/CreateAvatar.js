@@ -3,6 +3,7 @@ import rabbitImage from '../images/rabbit.png';
 import catImage from '../images/cat.png';
 import dogImage from '../images/dog.png';
 import bearImage from '../images/bear.png';
+import { useNavigate } from 'react-router-dom';
 
 const avatarList = [
   { name: 'Rabbit', image: rabbitImage },
@@ -16,6 +17,8 @@ const CreateAvatar = () => {
   const [avatarConfirmed, setAvatarConfirmed] = useState(false);
   const [locationConfirmed, setLocationConfirmed] = useState(false);
   const [location, setLocation] = useState('');
+  const navigate = useNavigate();
+  const handleNextDisabled = !(avatarConfirmed && locationConfirmed); // "Next" button is disabled if not both are confirmed
 
   const handleNext = () => {
     setIndex((prev) => (prev + 1) % avatarList.length);
@@ -46,40 +49,39 @@ const CreateAvatar = () => {
     setLocationConfirmed(false);
   };
 
+  const handleNextClick = () => {
+    if (handleNextDisabled) return;
+    handleNextPage();
+  };
+
+  const handleNextPage = () => {
+    navigate('/profile'); 
+  };
+
   const selected = avatarList[index];
 
   return (
     <div className="flex flex-col items-center justify-center p-6 min-h-screen bg-green-50">
       <h1 className="text-2xl font-bold mb-6">Choose Your Animal Avatar</h1>
 
-      <div className="flex items-center space-x-8 mb-6">
-        <button
-          onClick={handlePrev}
-          className="text-4xl text-gray-600 hover:text-black"
-        >
-          ←
-        </button>
-
-        <button
-          onClick={handleNext}
-          className="text-4xl text-gray-600 hover:text-black"
-        >
-          →
-        </button>
-
-        {/* <div className="flex flex-col items-center">
-          <img
-            src={selected.image}
-            alt={selected.name}
-            className="w-64 h-64 object-contain"
-          />
-          <p className="text-lg mt-2">{selected.name}</p>
-        </div> */}
-      </div>
-
       {/* Avatar Confirmation */}
       {!avatarConfirmed ? (
         <div>
+          <div> 
+            <button
+            onClick={handlePrev}
+            className="text-4xl text-gray-600 hover:text-black"
+            >
+              ←
+            </button>
+
+            <button
+              onClick={handleNext}
+              className="text-4xl text-gray-600 hover:text-black"
+            >
+              →
+            </button>
+          </div>
           <img
             src={selected.image}
             alt={selected.name}
@@ -140,6 +142,17 @@ const CreateAvatar = () => {
           </button>
         </div>
       )}
+
+      {/* "Next" button */}
+      {avatarConfirmed && locationConfirmed && (
+        <button
+          onClick={handleNextClick}
+          className="mt-8 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg"
+        >
+          Next
+        </button>
+      )}
+
     </div>
   );
 };
