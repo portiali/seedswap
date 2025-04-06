@@ -1,6 +1,6 @@
 /* Ensure the parent container takes the full width of the screen */
 .socialpage-container {
-    color: pink;
+    color: black;
     display: flex;
     justify-content: space-between; /* Space out the sections */
     gap: 20px; /* Optional: space between the boxes */
@@ -21,12 +21,47 @@
     overflow-y: auto;
   }
   
-  .posting-box {
+  .user-box {
+    display: flex;
+    align-items: center;
     border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
     border-radius: 8px;
     background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .user-info-left {
+    margin-right: 30px;
+  }
+  
+  .avatar-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Right side column layout */
+  .user-info-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  
+  .username {
+    margin: 0;
+    font-size: 25px;
+    text-align: left;
+  }
+  
+  .city {
+    margin: 4px 0 10px 0;
+    font-size: 20px;
+    text-align: left;
+    color: #555;
   }
 
   /* Ensure the parent container takes up 48% of the container width */
@@ -64,6 +99,87 @@
   color: black;
 }
 
+.seed-posting:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.7));
+  }
+
+.seed-posting-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* dimmed background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Make sure it floats above everything else */
+  }
+  
+  /* The popup box */
+  .popup-content {
+    background-color: #ffffff;
+    padding: 2rem;
+    width: 400px;
+    max-width: 90%;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: center;
+  }
+  
+  /* Close button (X) */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: #333;
+  }
+  
+  /* Popup image styling */
+  .popup-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+  }
+  
+  /* Message User button */
+  .message-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .message-btn:hover {
+    background-color: #45a049;
+  }
+
 /* Ensure responsive behavior */
 @media (max-width: 1200px) {
     .grid-container {
@@ -91,9 +207,28 @@ button {
     color: white;
     border: none;
     border-radius: 4px;
+    width: auto; /* Reset any unintended width stretching */
+    max-width: 150px;
     cursor: pointer;
 }
 
 button:hover {
     background-color: #45a049;
 }
+
+.message-button-img {
+    width: 150px;  /* Adjust the size of the icon */
+    height: 150px;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .message-button-img:hover {
+    opacity: 0.7;  /* Optional: add hover effect */
+  }
+
+  .message-icon .message-text {
+    font-size: 14px; /* Adjust the size as per your requirement */
+    margin-top: 5px; /* Optional: adjust spacing between the image and text */
+    font-weight: normal; /* Optional: change font weight */
+  }
