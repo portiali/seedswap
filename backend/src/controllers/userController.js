@@ -2,7 +2,7 @@
 
 const User = require('../models/User');
 const Seedbook = require('../models/Seedbook');
-// const Garden = require('../models/Garden');
+const Garden = require('../models/Garden');
 
 const loginUser = async (req, res) => {
   try {
@@ -136,7 +136,7 @@ const swapUserSeeds = async (req, res) => {
     // Save the updated seedbooks
     await seedbookA.save();
     await seedbookB.save();
-    
+
      // Log the descriptions of the seeds after the swap
     console.log('After Swap:');
     console.log(`User A's Seeds: ${seedbookA.seeds.map(seed => seed.status + " " + seed.seedId)}`);
@@ -198,44 +198,61 @@ const addSeedToUser = async (req, res) => {
 
 
 
+const moveToGarden = async (req, res) => {
+  try {
+    const { userId, seedId } = req.body;
+
+    // Validate input
+    if (!userId || !seedId) {
+      return res.status(400).json({ message: 'userId and seedId are required' });
+    }
+
+    // Step 1: Find the user's seedbook
+    let seedbook = await Seedbook.findOne({ userId });
+
+    if (!seedbook) {
+      return res.status(404).json({ message: 'Seedbook not found for the user' });
+    }
+
+    // Step 2: Find and remove the seed from the seedbook
+    const seedIndex = seedbook.seeds.findIndex(seed => seed.seedId.toString() === seedId);
+
+    if (seedIndex === -1) {
+      return res.status(404).json({ message: 'Seed not found in the seedbook' });
+    }
+
+    // Remove the seed from the seedbook
+    const seedToMove = seedbook.seeds.splice(seedIndex, 1)[0];
+
+    // Step 3: Find or create the user's garden
+    let garden = await Garden.findOne({ userId });
+
+    if (!garden) {
+      garden = new Garden({
+        userId,
+        plantedSeeds: []  // Initialize an empty array for planted seeds if no garden exists
+      });
+    }
+
+    // Step 4: Add the seed to the garden
+    garden.plantedSeeds.push({ seedId: seedToMove.seedId });
+
+    // Step 5: Save the updated seedbook and garden
+    await seedbook.save();
+    await garden.save();
+
+    res.status(200).json({ message: 'Seed moved to garden successfully', garden });
+  } catch (err) {
+    console.error('Error moving seed to garden:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 module.exports = { 
     createUser,
     loginUser,
     swapUserSeeds,
-    addSeedToUser
+    addSeedToUser,
+    moveToGarden
 };
 
-
-
-// exports.syncUser = async (req, res) => {
-//   try {
-//     // The authenticated user information from Auth0
-//     const user = req.oidc.user;
-
-//     // Look for the user in the MongoDB collection by email
-//     let existingUser = await User.findOne({ email: user.email });
-
-//     // If the user does not exist, create a new user document
-//     if (!existingUser) {
-//       existingUser = new User({
-//         name: user.name,
-//         email: user.email,
-//         location: user.location,  // You may also have location from Auth0
-//         // NOTE: change this to lat and lon
-//       });
-//       await existingUser.save();  // Save the new user in MongoDB
-//     }
-
-//     // Return the user data
-//     res.json(existingUser);
-//   } catch (err) {
-//     console.error('Error syncing user:', err);
-//     res.status(500).json({ message: 'Internal server error' });
-//   }
-// };
-
-// // Export both functions
-// module.exports = {
-//   createUser,
-//   syncUser,
-// };
