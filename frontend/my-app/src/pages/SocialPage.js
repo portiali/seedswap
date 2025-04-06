@@ -7,12 +7,17 @@ import './styles/SocialPage.css'; // CSS file for styling
 function SocialPage() {
   const navigate = useNavigate(); 
   return (
-    <div>
+    <div className="home-page">
+      <header className="profile-header">
+        <h1>Socials</h1>
+      </header>
+      
       <div className="back-btn-container">
         <button onClick={() => navigate('/profile')} className="back-btn">
           Back
         </button>
       </div>
+      
       <div className="socialpage-container">
         <div className="socialpage-section">
           <h2>Seed Postings</h2>

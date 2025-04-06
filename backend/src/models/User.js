@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
+
+
 const { Schema } = mongoose;
+
+const Seedbook = require('./Seedbook'); 
+const Garden = require('./Garden');  
 
 const userSchema = new Schema({
   name: {
@@ -22,6 +27,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true
+  },
+  password: { // New password field
+    type: String,
+    required: true
   }
   // ownedSeeds: [
   //   {
@@ -40,6 +49,35 @@ const userSchema = new Schema({
 }, {
   timestamps: true
 });
+
+// Post save middleware to create a Seedbook for the user
+userSchema.post('save', async function (doc) {
+  try {
+    console.log('Creating Seedbook...');
+    const seedbook = new Seedbook({
+      userId: doc._id,  // Reference to the user who owns this seedbook
+      seeds: []  // Start with an empty array for the seeds
+    });
+    
+    console.log('Saving Seedbook to database...');
+    await seedbook.save();  // Save the new Seedbook to the database
+    console.log(`Seedbook created for user: ${doc.name}`);
+
+    console.log('Creating Garden...');
+    const garden = new Garden({
+    userId: doc._id, // Link to the created user
+    plantedSeeds: [] // Initially empty, can be updated later
+    });
+  
+    await garden.save(); // Save the Garden to the database
+    console.log(`Garden created for user ${doc.name}`);
+  } catch (err) {
+    console.error('Error creating Seedbook or Garden:', err);
+  }
+});
+
+
+
 
 const User = mongoose.model('User', userSchema);
 

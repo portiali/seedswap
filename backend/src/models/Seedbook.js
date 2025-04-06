@@ -8,20 +8,24 @@ const seedbookSchema = new Schema({
     ref: 'User', // Reference to the user who owns the seed
     required: true
   },
-  seeds: [
+  seeds: {
+    type:[
     {
+        // set false for needing a seedID & status each time-- maybe issues?
       seedId: {
         type: Schema.Types.ObjectId,
         ref: 'Seed',  // Reference to the seed document
-        required: true
+        required: false
       },
       status: {
         type: String,  // Can be 'available', 'not_available', 'up_for_trade', etc.
-        required: true,
+        required: false,
         default: 'up_for_trade'  // Default status is 'up_for_trade'
       }
     }
-  ]
+  ],
+  default: []
+}
 }, { timestamps: true });
 
 const Seedbook = mongoose.model('Seedbook', seedbookSchema);
