@@ -120,6 +120,9 @@ const swapUserSeeds = async (req, res) => {
   }
 };
 
+
+
+
 const addSeedToUser = async (req, res) => {
   try {
     const { userId, seedId, status } = req.body;
@@ -167,7 +170,6 @@ const addSeedToUser = async (req, res) => {
 
 module.exports = { 
     createUser,
-    // getUser,
     loginUser,
     swapUserSeeds,
     addSeedToUser
