@@ -6,16 +6,24 @@
     min-height: 100vh;
   }
   
-  .header {
-    text-align: center;
-    margin-bottom: 2rem;
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   
-  .username {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #00796b; /* Darker shade of teal */
-  }
+  
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.username {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
   
   .components-container {
     display: flex;
