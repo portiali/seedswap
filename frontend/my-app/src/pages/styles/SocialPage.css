@@ -1,3 +1,9 @@
+.social-page {
+    background-color: #e0f7fa; /* Light blue background */
+    padding: 20px;
+    font-family: sans-serif;
+    min-height: 100vh;
+  }
 /* Ensure the parent container takes the full width of the screen */
 .socialpage-container {
     color: black;
@@ -5,8 +11,8 @@
     justify-content: space-between; /* Space out the sections */
     gap: 20px; /* Optional: space between the boxes */
     margin: 40px auto; /* Optional: centered container with margin */
-    max-width: 1200px; /* Optional: to control the overall width */
     width: 100%; /* Ensures full width */
+    max-width: 1300px;
   }
   
   /* Box for each section (Seed Postings & Account Listings) */
@@ -231,4 +237,10 @@ button:hover {
     font-size: 14px; /* Adjust the size as per your requirement */
     margin-top: 5px; /* Optional: adjust spacing between the image and text */
     font-weight: normal; /* Optional: change font weight */
+  }
+
+  .socials-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
