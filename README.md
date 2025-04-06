@@ -31,3 +31,39 @@ Clone the repository:
 ```bash
 git clone https://github.com/yourusername/seedswap.git
 cd seedswap
+
+Install dependencies:
+
+bash
+Copy
+Edit
+npm install
+Set up your .env file:
+
+env
+Copy
+Edit
+PORT=3000
+MONGO_URI=your_mongodb_connection_string
+Run the server:
+
+bash
+Copy
+Edit
+npm start
+📁 Project Structure
+bash
+Copy
+Edit
+seedswap/
+├── controllers/      # Handles core logic for users, seeds, etc.
+├── models/           # Mongoose models (User, Seed, etc.)
+├── routes/           # API routes
+├── .env              # Environment variables
+├── server.js         # App entry point
+🤝 Contributing
+Have ideas for new features or UI improvements? Feel free to fork the repo and submit a PR!
+You can also open an issue if you encounter a bug or want to suggest something.
+
+🌸 Why SeedSwap?
+In a world filled with digital noise, SeedSwap is a breath of fresh air—a place for nature lovers to connect through something meaningful and tangible: growing things. 🌿
