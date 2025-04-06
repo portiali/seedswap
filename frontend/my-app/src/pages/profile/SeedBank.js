@@ -8,8 +8,8 @@ function SeedBank() {
   const [seeds, setSeeds] = useState([
     { name: "Sunflower", status: "normal" },
     { name: "Tomato", status: "normal" },
-    { name: "Basil", status: "normal" },
-    { name: "Lettuce", status: "normal" },
+    { name: "Corn", status: "normal" },
+    { name: "Cabbage", status: "normal" },
     { name: "Carrot", status: "normal" },
   ]);
   const [newSeedInputVisible, setNewSeedInputVisible] = useState(false);

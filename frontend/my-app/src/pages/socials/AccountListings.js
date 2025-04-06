@@ -41,7 +41,7 @@ function AccountListings() {
             <img src={user.avatar} alt="avatar" className="avatar-img" />
           </div>
           <div className="user-info-right">
-            <p className="username">{user.username}</p>
+            <p className="social-username">{user.username}</p>
             <p className="city">{user.city}</p>
             <button onClick={() => handleViewProfile(user)}>View Profile</button>
           </div>
