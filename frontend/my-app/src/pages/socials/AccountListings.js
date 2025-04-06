@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import cat from '../../images/cat.png';
 import mailbox from "../../images/mail.png";
+import './../styles/SocialPage.css';
 
 function AccountListings() {
 
@@ -40,7 +41,7 @@ function AccountListings() {
             <img src={user.avatar} alt="avatar" className="avatar-img" />
           </div>
           <div className="user-info-right">
-            <p className="username"><strong>{user.username}</strong></p>
+            <p className="username">{user.username}</p>
             <p className="city">{user.city}</p>
             <button onClick={() => handleViewProfile(user)}>View Profile</button>
           </div>
