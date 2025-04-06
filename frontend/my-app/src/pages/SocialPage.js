@@ -8,7 +8,7 @@ function SocialPage() {
   const navigate = useNavigate(); 
   return (
     <div className="home-page">
-      <header className="profile-header">
+      <header className="social-header">
         <h1>Socials</h1>
       </header>
       
@@ -20,11 +20,11 @@ function SocialPage() {
       
       <div className="socialpage-container">
         <div className="socialpage-section">
-          <h2>Seed Postings</h2>
+          <h2 className='socialpage-header'>Seed Postings</h2>
           <SeedPostings />  {/* Use the SeedPostings component here */}
         </div>
         <div className="socialpage-section">
-          <h2>Nearby Users</h2>
+          <h2 className='socialpage-header'>Nearby Users</h2>
           <AccountListings />
         </div>
       </div>
