@@ -1,5 +1,6 @@
 // src/pages/SeedPostings.js
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import './../styles/SocialPage.css';
 import seed1 from "../../images/corn-packet.png";
 import seed2 from "../../images/tomato-packet.png";
@@ -12,7 +13,7 @@ function SeedPostings() {
     const seedPostings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]; // Sample data for seed postings
     const seedImages = [seed1, seed2, seed3, seed4, seed5];
 
-
+    const navigate = useNavigate(); 
     const [selectedPost, setSelectedPost] = useState(null); // null means no popup
 
     const handleClick = (post) => {
@@ -21,6 +22,11 @@ function SeedPostings() {
 
     const closeModal = () => {
         setSelectedPost(null);
+    };
+
+    // Function to navigate to the chatroom
+    const handleMessageClick = (post) => {
+      navigate(`/chatroom`); // Navigate to the chatroom of the user
     };
 
     return (
@@ -44,7 +50,9 @@ function SeedPostings() {
             <img src={selectedPost.image} alt="Seed" className="popup-image" />
             <h2>Seed Post {selectedPost.post}</h2>
             <p>This is some placeholder info about seed post {selectedPost.post}.</p>
-            <button className="message-btn">Message User</button>
+            <button className="message-btn" onClick={() => handleMessageClick(selectedPost)}>
+                            Message User
+            </button>
           </div>
         </div>
       )}
