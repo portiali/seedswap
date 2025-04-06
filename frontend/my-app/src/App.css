@@ -1,10 +1,46 @@
+@font-face {
+  font-family: 'bubbly';
+  src: url('./fonts/bubbly-pixel.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'pixel';
+  src: url('./fonts/pixel.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  height: 100vh; /* Ensures the body takes up the full screen height */
+  background-color: #282c34; /* Set background color to dark */
+  overflow: hidden; /* Prevent scrolling */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+  position: absolute;
+  bottom: -155vmin; /* Position the logo lower to cut it off */
+  height: 225vmin; /* Increase the size of the logo */
   pointer-events: none;
+  animation: App-logo-spin infinite 10s linear;
+}
+
+.welcome {
+  margin-top: 35; 
+  margin-bottom: 0; 
+}
+
+.seedswap {
+  font-size: 8rem;
+  margin: 0; 
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,15 +49,20 @@
   }
 }
 
+.home-page {
+  height: 100vh; /* Make the page take up the full screen height */
+}
+
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh; /* Ensures the header fills the entire screen */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(60px + 2vmin);
   color: white;
+  overflow: hidden; /* Prevents the logo from overflowing */
+  font-family: bubbly; 
 }
 
 .App-link {
@@ -35,4 +76,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.login-btn,
+.signup-btn {
+  background-color: rgb(58, 240, 83);
+  border: none;
+  color: #000000;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 15px; 
+  font-family: pixel; 
+  z-index: 2; /* Ensure the buttons are above the logo */
+  position: relative;
+}
+
+.login-btn:hover,
+.signup-btn:hover {
+  background-color: rgb(31, 200, 93); /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
 }
