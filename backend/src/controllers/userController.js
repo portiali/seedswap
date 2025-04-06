@@ -99,6 +99,13 @@ const swapUserSeeds = async (req, res) => {
       return res.status(404).json({ message: 'One or both users\' seedbooks not found' });
     }
 
+     // Log the descriptions of the seeds in both users' seedbooks before the swap
+    console.log('Before Swap:');
+    console.log(`User A's Seeds: ${seedbookA.seeds.map(seed => seed.status + " " + seed.seedId)}`);
+    console.log(`User B's Seeds: ${seedbookB.seeds.map(seed => seed.status + " " + seed.seedId)}`);
+
+
+
     // Find the seeds in each user's seedbook
     const seedFromAIndex = seedbookA.seeds.findIndex(seed => seed.seedId.toString() === seedIdFromA);
     const seedFromBIndex = seedbookB.seeds.findIndex(seed => seed.seedId.toString() === seedIdFromB);
@@ -111,6 +118,10 @@ const swapUserSeeds = async (req, res) => {
     const seedFromA = seedbookA.seeds[seedFromAIndex];
     const seedFromB = seedbookB.seeds[seedFromBIndex];
 
+       // Log the descriptions of the seeds about to be swapped
+    console.log(`Seed from A (User A) to be swapped: ${seedFromA.status} ${seedFromA.seedId}`);
+    console.log(`Seed from B (User B) to be swapped: ${seedFromB.status} ${seedFromB.seedId}`);
+
     // Swap the seeds: Add seedFromA to userB's seedbook and seedFromB to userA's seedbook
     seedbookB.seeds.push(seedFromA);
     seedbookA.seeds.push(seedFromB);
@@ -119,9 +130,17 @@ const swapUserSeeds = async (req, res) => {
     seedbookA.seeds.splice(seedFromAIndex, 1);
     seedbookB.seeds.splice(seedFromBIndex, 1);
 
+
+    
+
     // Save the updated seedbooks
     await seedbookA.save();
     await seedbookB.save();
+    
+     // Log the descriptions of the seeds after the swap
+    console.log('After Swap:');
+    console.log(`User A's Seeds: ${seedbookA.seeds.map(seed => seed.status + " " + seed.seedId)}`);
+    console.log(`User B's Seeds: ${seedbookB.seeds.map(seed => seed.status + " " + seed.seedId)}`);
 
     res.status(200).json({ message: 'Seeds successfully swapped', userAId, userBId, seedbookA, seedbookB });
 
