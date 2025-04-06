@@ -9,8 +9,8 @@ import './App.css';
 import Signup from './Signup';
 import Login from './Login';
 import ProfilePage from './ProfilePage';
-// import AvatarCustomization from './AvatarCustomization';
 import HomePage from './HomePage';
+import CreateAvatar from './CreateAvatar';
 
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
           <Route path="/login" element={<Login onLogin={handleLogin}/>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/create-avatar" element={<CreateAvatar />} />
         </Routes>
       </div>
     </Router>

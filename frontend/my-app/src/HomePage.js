@@ -7,7 +7,6 @@ import Login from './Login';
 function HomePage({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
   const [showLogin, setShowLogin] = useState(false);
-  //const [loggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogout = () => {
     setIsLoggedIn(false);

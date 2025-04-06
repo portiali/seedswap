@@ -10,7 +10,7 @@ function Signup() {
     e.preventDefault();
     // You can replace this with actual signup logic (e.g., API call)
     console.log('Signing up with:', email, password);
-    navigate('/login'); // Redirect to login after signup
+    navigate('/create-avatar'); // Redirect to login after signup
   };
 
   return (
@@ -22,7 +22,7 @@ function Signup() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
+          //required
         />
         <br />
         <input
@@ -30,7 +30,7 @@ function Signup() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
+          //required
         />
         <br />
         <button type="submit">Sign Up</button>
