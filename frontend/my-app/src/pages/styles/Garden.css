@@ -16,7 +16,9 @@
 
 .flower-image {
   width: 100px;
-  height: 100px;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .flower-tooltip {
