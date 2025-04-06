@@ -74,19 +74,18 @@
   width: 48%; /* Each component takes up half of the container */
   height: 0px; 
   background-color: rgba(255, 255, 255, 0);
-  padding: 20px;
   border-radius: 8px;
-}
-
-.seed-bank {
   padding: 24px;
   font-family: sans-serif;
+}
+
+.seed-item {
+  padding: 10px; 
 }
 
 .seed-bank-header {
   text-align: center;
 }
-
 
 .book {
   width: 13rem;
