@@ -27,6 +27,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true
+  },
+  password: { // New password field
+    type: String,
+    required: true
   }
   // ownedSeeds: [
   //   {

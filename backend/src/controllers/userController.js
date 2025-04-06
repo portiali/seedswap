@@ -27,25 +27,34 @@ const createUser = async (req, res) => {
 };
 
 
-// const createSeedbook = async (req, res) => {
-//   try {
-//     const { userId, seeds } = req.body;
 
-//     const newSeedbook = new Seedbook({
-//       userId,
-//       seeds
-//     });
+const getUser = async (req, res) => {
+  try {
+    // Assuming you're using email to fetch the user. You can change it to user ID if necessary.
+    const { email } = req.query; // Or use `req.params` or `req.body` depending on your request structure.
 
-//     await newSeedbook.save();
-//     res.status(201).json(newSeedbook);
-//   } catch (err) {
-//     console.error('Error creating seedbook:', err);
-//     res.status(500).json({ error: 'Failed to create seedbook' });
-//   }
-// };
+    // Find the user in the database by email (you can also use ID if necessary)
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' }); // Respond with error if user is not found
+    }
+
+    // Exclude the password from the response to avoid exposing it
+    const { password, ...userData } = user.toObject(); // Destructure to exclude password
+
+    // Send the user data excluding the password
+    res.status(200).json(userData); // Respond with user information
+  } catch (err) {
+    // Handle any other errors that may occur
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
 
 module.exports = { 
-    createUser
+    createUser,
+    getUser
 };
 
 
