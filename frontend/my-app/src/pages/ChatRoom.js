@@ -1,26 +1,18 @@
-import React, { useState } from 'react';
-import { useContext } from "react";
-import { SeedContext } from "./SeedContext";
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from './UserContext';  // Import useUser hook
 import './styles/ChatRoom.css';
 import close from '../images/close.png';
+import { SeedContext } from "./SeedContext";
 
 function ChatRoom() {
-  const [users] = useState([
-    { id: 1, name: "PlantLover" },
-    { id: 2, name: "GardeningGuru" },
-    { id: 3, name: "FlowerFanatic" }
-  ]);
-
- 
+  const { selectedUser, setSelectedUser } = useUser();  // Access selected user from context
   const [messages, setMessages] = useState({});
-  const [selectedUser, setSelectedUser] = useState(null);
   const [userInput, setUserInput] = useState('');
   const [showSwapModal, setShowSwapModal] = useState(false);
   const [yourSeed, setYourSeed] = useState('');
   const [theirSeed, setTheirSeed] = useState('');
   const { tradedSeeds, removeTradedSeed, addNewSeed } = useContext(SeedContext);
-
   const navigate = useNavigate();
 
   const handleSend = (user, text) => {
@@ -38,19 +30,13 @@ function ChatRoom() {
     setUserInput('');
   };
 
-  // Mock seed data for both users
   const yourSeeds = tradedSeeds;
   const otherUserSeeds = ['Cucumber Packet', 'Lettuce Packet', 'Radish Packet'];
 
   const handleSwapSubmit = () => {
     alert(`Your "${yourSeed}" has been swapped with ${selectedUser}'s "${theirSeed}"! Check your updated seedbank`);
-    
-    // Remove your traded seed
     removeTradedSeed(yourSeed);
-  
-    // Add their seed
     addNewSeed(theirSeed);
-  
     setShowSwapModal(false);
     setYourSeed('');
     setTheirSeed('');
@@ -68,13 +54,13 @@ function ChatRoom() {
         <div className="left-panel">
           <h2 className="title">Chats</h2>
           <ul className="user-list">
-            {users.map((user) => (
+            {['PlantLover', 'GardeningGuru', 'FlowerFanatic'].map((userName) => (
               <li
-                key={user.id}
-                className={`user ${selectedUser === user.name ? 'selected' : ''}`}
-                onClick={() => setSelectedUser(user.name)}
+                key={userName}
+                className={`user ${selectedUser === userName ? 'selected' : ''}`}
+                onClick={() => setSelectedUser(userName)}
               >
-                {user.name}
+                {userName}
               </li>
             ))}
           </ul>
@@ -86,7 +72,7 @@ function ChatRoom() {
               <h1 className="title">Chat with {selectedUser}</h1>
               <div className="messages">
                 {(messages[selectedUser] || []).map((msg, index) => (
-                  <div key={index} className={`message ${msg.user === 'User1' ? 'user1' : 'user2'}`}>
+                  <div key={index} className={`message ${msg.user === 'You' ? 'user1' : 'user2'}`}>
                     <strong>{msg.user}:</strong> {msg.text}
                   </div>
                 ))}
@@ -98,9 +84,7 @@ function ChatRoom() {
                   onChange={(e) => setUserInput(e.target.value)}
                   placeholder={`Message ${selectedUser}...`}
                 />
-                <button onClick={() => {
-                  handleSend('User1', userInput);
-                }}>
+                <button onClick={() => handleSend('You', userInput)}>
                   Send
                 </button>
               </div>
@@ -113,23 +97,21 @@ function ChatRoom() {
         </div>
       </div>
 
-      {/* Swap Seeds button */}
       {selectedUser && (
         <button className="swap-btn" onClick={() => setShowSwapModal(true)}>
           Swap Seeds!
         </button>
       )}
 
-      {/* Modal for swapping seeds */}
       {showSwapModal && (
         <div className="swap-modal-overlay" onClick={() => setShowSwapModal(false)}>
           <div className="swap-modal" onClick={(e) => e.stopPropagation()}>
-              <img
+            <img
               src={close}
               alt="Close"
               className="close-icon"
               onClick={() => setShowSwapModal(false)}
-              />
+            />
             <h2>Trade Seeds with {selectedUser}</h2>
             <div className="dropdowns">
               <div className="swap-box">
@@ -139,10 +121,9 @@ function ChatRoom() {
                   {yourSeeds.map((seed, index) => (
                     <option key={index} value={seed}>{seed}</option>
                   ))}
-                  
                 </select>
                 {yourSeeds.length === 0 && (
-                    <p className="no-seeds-message">You have no seeds put up for trade.</p>
+                  <p className="no-seeds-message">You have no seeds put up for trade.</p>
                 )}
               </div>
               <div className="swap-box">

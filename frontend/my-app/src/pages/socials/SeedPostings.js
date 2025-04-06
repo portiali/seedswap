@@ -1,20 +1,20 @@
-// src/pages/SeedPostings.js
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../UserContext';  // Import the useUser hook
 import './../styles/SocialPage.css';
 import seed1 from "../../images/corn-packet.png";
 import seed2 from "../../images/tomato-packet.png";
 import seed3 from "../../images/sunflower-packet.png";
 import seed4 from "../../images/cabbage-packet.png";
 import seed5 from "../../images/carrot-packet.png";
-import crate from "../../images/crate.png";
 
 function SeedPostings() {
-    const seedPostings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]; // Sample data for seed postings
+    const seedPostings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     const seedImages = [seed1, seed2, seed3, seed4, seed5];
-
-    const navigate = useNavigate(); 
-    const [selectedPost, setSelectedPost] = useState(null); // null means no popup
+    
+    const navigate = useNavigate();
+    const { setSelectedUser } = useUser();  // Access the global state to set the selected user
+    const [selectedPost, setSelectedPost] = useState(null);
 
     const handleClick = (post) => {
         setSelectedPost(post);
@@ -24,26 +24,29 @@ function SeedPostings() {
         setSelectedPost(null);
     };
 
-    // Function to navigate to the chatroom
     const handleMessageClick = (post) => {
-      navigate(`/chatroom`); // Navigate to the chatroom of the user
+        // Update the global user state with the selected user
+        setSelectedUser({ username: `User${post}`, city: 'Some City' });
+
+        // Navigate to the chatroom
+        navigate('/chatroom');
     };
 
     return (
       <div className="seed-postings">
         <div className="grid-container">
           {seedPostings.map((post, index) => {
-            const assignedImage = seedImages[index % seedImages.length]; // Deterministic image based on index
+            const assignedImage = seedImages[index % seedImages.length];
             return (
               <div key={index} className="seed-posting" onClick={() => handleClick({ post, image: assignedImage })}>
                 <img src={assignedImage} alt={`Seed ${index}`} className="seed-thumbnail" />
-                <p>seed post {post}</p>
+                <p>Seed post {post}</p>
               </div>
             );
           })}
         </div>
 
-      {selectedPost !== null && (
+        {selectedPost !== null && (
         <div className="popup-overlay" onClick={closeModal}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
             <button className="close-btn" onClick={closeModal}>×</button>
@@ -55,9 +58,9 @@ function SeedPostings() {
             </button>
           </div>
         </div>
-      )}
-    </div>
-      );
-    }
-    
-    export default SeedPostings;
+        )}
+      </div>
+    );
+}
+
+export default SeedPostings;
