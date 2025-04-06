@@ -4,7 +4,7 @@ import catImage from '../images/cat.png';
 import dogImage from '../images/dog.png';
 import bearImage from '../images/bear.png';
 import { useNavigate } from 'react-router-dom';
-import './styles/CreateAvatar.css'; // Import the CSS file
+import './styles/CreateAvatar.css';
 
 const avatarList = [
   { name: 'Rabbit', image: rabbitImage },
@@ -17,9 +17,12 @@ const CreateAvatar = () => {
   const [index, setIndex] = useState(0);
   const [avatarConfirmed, setAvatarConfirmed] = useState(false);
   const [locationConfirmed, setLocationConfirmed] = useState(false);
+  const [usernameConfirmed, setUsernameConfirmed] = useState(false);
   const [location, setLocation] = useState('');
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
-  const handleNextDisabled = !(avatarConfirmed && locationConfirmed); // "Next" button is disabled if not both are confirmed
+
+  const handleNextDisabled = !(avatarConfirmed && locationConfirmed && usernameConfirmed);
 
   const handleNext = () => {
     setIndex((prev) => (prev + 1) % avatarList.length);
@@ -33,29 +36,24 @@ const CreateAvatar = () => {
     const selectedAvatar = avatarList[index];
     localStorage.setItem('myAvatar', JSON.stringify(selectedAvatar));
     setAvatarConfirmed(true);
-    console.log('Avatar confirmed:', selectedAvatar);
   };
 
   const handleConfirmLocation = () => {
-    localStorage.setItem('userLocation', location); // Save location to localStorage
+    localStorage.setItem('userLocation', location);
     setLocationConfirmed(true);
-    console.log('Location confirmed:', location);
   };
 
-  const handleEditAvatar = () => {
-    setAvatarConfirmed(false);
+  const handleConfirmUsername = () => {
+    localStorage.setItem('username', username);
+    setUsernameConfirmed(true);
   };
 
-  const handleEditLocation = () => {
-    setLocationConfirmed(false);
-  };
+  const handleEditAvatar = () => setAvatarConfirmed(false);
+  const handleEditLocation = () => setLocationConfirmed(false);
+  const handleEditUsername = () => setUsernameConfirmed(false);
 
   const handleNextClick = () => {
     if (handleNextDisabled) return;
-    handleNextPage();
-  };
-
-  const handleNextPage = () => {
     navigate('/profile');
   };
 
@@ -65,52 +63,25 @@ const CreateAvatar = () => {
     <div className="create-avatar-container">
       <h1 className="create-avatar-header">Choose Your Animal Avatar</h1>
 
-      {/* Avatar Confirmation */}
       {!avatarConfirmed ? (
         <div>
           <div className="avatar-selection-container">
-            <button
-              onClick={handlePrev}
-              className="arrow-buttons"
-            >
-              ←
-            </button>
-
-            <button
-              onClick={handleNext}
-              className="arrow-buttons"
-            >
-              →
-            </button>
+            <button onClick={handlePrev} className="arrow-buttons">←</button>
+            <button onClick={handleNext} className="arrow-buttons">→</button>
           </div>
           <div className="avatar-image-container">
-            <img
-              src={selected.image}
-              alt={selected.name}
-              className="avatar-image"
-            />
+            <img src={selected.image} alt={selected.name} className="avatar-image" />
             <p className="avatar-name">{selected.name}</p>
           </div>
-          <button
-            onClick={handleConfirmAvatar}
-            className="confirm-avatar-button"
-          >
+          <button onClick={handleConfirmAvatar} className="confirm-avatar-button">
             Confirm Avatar
           </button>
         </div>
       ) : (
         <div className="avatar-confirmed-container">
           <p className="avatar-confirmed-text">You chose the {selected.name}!</p>
-          <img
-            src={selected.image}
-            alt={selected.name}
-            className="avatar-confirmed-image"
-          />
-
-          <button
-            onClick={handleEditAvatar}
-            className="edit-avatar-button"
-          >
+          <img src={selected.image} alt={selected.name} className="avatar-confirmed-image" />
+          <button onClick={handleEditAvatar} className="edit-avatar-button">
             Edit Avatar
           </button>
         </div>
@@ -118,7 +89,6 @@ const CreateAvatar = () => {
 
       <h1 className="create-avatar-header">Set Your Location</h1>
 
-      {/* Location Confirmation */}
       {!locationConfirmed ? (
         <div className="location-section">
           <p className="location-text">Please enter your location:</p>
@@ -129,28 +99,46 @@ const CreateAvatar = () => {
             className="location-input"
             placeholder="Enter your location"
           />
-          <button
-            onClick={handleConfirmLocation}
-            className="confirm-location-button"
-          >
+          <button onClick={handleConfirmLocation} className="confirm-location-button">
             Confirm Location
           </button>
         </div>
       ) : (
         <div className="location-confirmed-container">
           <p className="location-confirmed-text">Location confirmed: {location}</p>
-
-          <button
-            onClick={handleEditLocation}
-            className="edit-location-button"
-          >
+          <button onClick={handleEditLocation} className="edit-location-button">
             Edit Location
           </button>
         </div>
       )}
 
-      {/* "Next" button */}
-      {avatarConfirmed && locationConfirmed && (
+      {/* Username Section */}
+      <h1 className="create-avatar-header">Create a Username</h1>
+
+      {!usernameConfirmed ? (
+        <div className="username-section">
+          <p className="username-text">Please enter a username:</p>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="username-input"
+            placeholder="Enter your username"
+          />
+          <button onClick={handleConfirmUsername} className="confirm-username-button">
+            Confirm Username
+          </button>
+        </div>
+      ) : (
+        <div className="username-confirmed-container">
+          <p className="username-confirmed-text">Username confirmed: {username}</p>
+          <button onClick={handleEditUsername} className="edit-username-button">
+            Edit Username
+          </button>
+        </div>
+      )}
+
+      {avatarConfirmed && locationConfirmed && usernameConfirmed && (
         <button
           onClick={handleNextClick}
           className="next-button"

@@ -9,7 +9,7 @@ function SocialPage() {
   return (
     <div className="home-page">
       <header className="social-header">
-        <h1>Socials</h1>
+        <h1>Marketplace</h1>
       </header>
       
       <div className="back-btn-container">

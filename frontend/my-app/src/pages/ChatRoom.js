@@ -17,12 +17,17 @@ function ChatRoom() {
 
   const handleSend = (user, text) => {
     if (!text.trim()) return;
-    const newMessage = { user, text, timestamp: new Date() };
+    const newMessage = { user: 'You', text, timestamp: new Date() };
     
     setMessages((prevMessages) => {
-      const userMessages = prevMessages[user] || [];
-      return { ...prevMessages, [user]: [...userMessages, newMessage] };
+      const userMessages = prevMessages[selectedUser] || [];
+      return {
+        ...prevMessages,
+        [selectedUser]: [...userMessages, newMessage]
+      };
     });
+  
+    setUserInput('');
   };
 
   return (
