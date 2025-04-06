@@ -8,7 +8,7 @@ function SocialPage() {
   const navigate = useNavigate(); 
   return (
     <div className="home-page">
-      <header className="social-header">
+      <header className="socials-header">
         <h1>Socials</h1>
       </header>
       
