@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { createBrowserRouter } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-
-import logo from './images/seed.png';
-import './App.css';
-
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import ProfilePage from './pages/ProfilePage';
-import HomePage from './pages/HomePage';
-import CreateAvatar from './pages/CreateAvatar';
-
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+// import Signup from './Signup';
+// import Login from './Login';
+// import AvatarCustomization from './AvatarCustomization';
+// import HomePage from './HomePage';
+import Garden from './pages/Home/Garden';
+import SeedBank from './pages/Home/SeedBank';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
