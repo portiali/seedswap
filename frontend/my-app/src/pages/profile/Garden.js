@@ -1,5 +1,6 @@
 import { useState } from "react";
 import g from "../../images/garden.png";
+import '../styles/Garden.css'
 
 function Garden() {
   return (

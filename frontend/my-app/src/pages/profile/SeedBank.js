@@ -66,10 +66,24 @@ function SeedBank() {
               <ul className="seed-list">
                 {seeds.map((seed) => (
                   <li
-                    key={seed.name}
-                    className={`seed-item ${seed.status === "traded" ? "traded" : ""}`}
+                  key={seed.name}
+                  className={`seed-item ${seed.status === "traded" ? "traded" : ""}`}
                   >
                     <span className="seed-name">{seed.name}</span>
+                    {seed.status === "traded" && (
+                      <button
+                        className="keep-btn"
+                        onClick={() =>
+                          setSeeds((prev) =>
+                            prev.map((s) =>
+                              s.name === seed.name ? { ...s, status: "normal" } : s
+                            )
+                          )
+                        }
+                      >
+                        Keep
+                      </button>
+                    )}
                     <input
                       type="checkbox"
                       checked={selectedSeeds[seed.name] || false}
@@ -86,7 +100,11 @@ function SeedBank() {
                     value={newSeedName}
                     onChange={(e) => setNewSeedName(e.target.value)}
                   />
-                  <button onClick={handleAddSeedConfirm}>Confirm</button>
+                  <button className="confirm-btn" onClick={handleAddSeedConfirm}>Confirm</button>
+                  <button className="cancel-btn" onClick={() => {
+                    setNewSeedInputVisible(false);
+                    setNewSeedName("");
+                  }}>Cancel</button>
                 </div>
               )}
               <div className="action-buttons">
