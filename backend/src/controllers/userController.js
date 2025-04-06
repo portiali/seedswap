@@ -150,9 +150,6 @@ const swapUserSeeds = async (req, res) => {
   }
 };
 
-
-
-
 const addSeedToUser = async (req, res) => {
   try {
     const { userId, seedId, status } = req.body;
@@ -248,11 +245,47 @@ const moveToGarden = async (req, res) => {
   }
 };
 
+
+const fetchUserSeeds = async (userId) => {
+  try {
+    // Retrieve the user's seedbook and garden, and populate the seed details (name, description, etc.)
+    const seedbook = await Seedbook.findOne({ userId }).populate('seeds.seedId');  // populate the seedId to get seed details
+    const garden = await Garden.findOne({ userId }).populate('plantedSeeds.seedId');  // populate the seedId to get seed details
+
+    if (!seedbook || !garden) {
+      throw new Error('Seedbook or Garden not found for the user');
+    }
+
+    // Format the response to include seeds from both the seedbook and garden with additional details
+    const seedbookSeeds = seedbook.seeds.map(seed => ({
+      seedId: seed.seedId._id,  // the seedId value
+      name: seed.seedId.name,  // populate the name field from the Seed collection
+      description: seed.seedId.description,  // populate the description field from the Seed collection
+      status: seed.status,
+    }));
+
+    const gardenSeeds = garden.plantedSeeds.map(plant => ({
+      seedId: plant.seedId._id,  // the seedId value
+      name: plant.seedId.name,  // populate the name field from the Seed collection
+      description: plant.seedId.description,  // populate the description field from the Seed collection
+    }));
+
+    return {
+      message: 'Seeds successfully fetched',
+      seedbook: seedbookSeeds,
+      garden: gardenSeeds,
+    };
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
 module.exports = { 
     createUser,
     loginUser,
     swapUserSeeds,
     addSeedToUser,
-    moveToGarden
+    moveToGarden,
+    fetchUserSeeds
 };
 
