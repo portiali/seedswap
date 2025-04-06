@@ -7,7 +7,7 @@ import mailbox from "../images/mail.png";
 import './styles/ProfilePage.css'; 
 
 function ProfilePage() {
-    const username = ["Maria"];
+    const username = "Maria";
     const navigate = useNavigate();
 
     const handleChatroomRedirect = () => {

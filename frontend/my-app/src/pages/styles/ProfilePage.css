@@ -8,15 +8,22 @@
 .profile-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   padding: 20px; 
+  font-family: bubbly; 
+}
+
+.username {
+  font-size: 70px !important;  /* Adjust the size as needed */
+  color: #333; /* You can adjust the color too */
 }
   
 .profile-image {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
+  padding: 10px; 
 }
 
 .social-buttons-container {
