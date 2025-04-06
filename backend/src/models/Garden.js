@@ -7,15 +7,18 @@ const gardenSchema = new Schema({
     ref: 'User',  // Reference to the user who owns the garden
     required: true
   },
-  plantedSeeds: [
+  plantedSeeds: {
+    type: [
     {
       seedId: {
         type: Schema.Types.ObjectId,
         ref: 'Seed',  // Reference to the seed document
-        required: true
+        required: false
       }
     }
-  ]
+  ],
+  default: []
+}
 }, { timestamps: true });
 
 const Garden = mongoose.model('Garden', gardenSchema);
