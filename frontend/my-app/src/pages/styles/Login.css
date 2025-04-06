@@ -13,23 +13,27 @@
   
   .login-popup {
     background: rgb(255, 255, 255);
-    color: black; 
+    color: rgb(0, 100, 0); 
     padding: 2rem;
     border-radius: 10px;
     width: 300px;
     position: relative;
+    font-size: 0.4em; 
   }
   
   .login-popup input {
     display: block;
-    width: 100%;
+    width: 95%;
     margin-bottom: 1rem;
     padding: 0.5rem;
+    
   }
   
   .login-popup button {
     padding: 0.5rem 1rem;
     cursor: pointer;
+    font-family: pixel; 
+    background: rgb(0, 100, 0);
   }
   
   .close-button {

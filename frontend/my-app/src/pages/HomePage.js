@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../images/seed.png';
+import logo from '../images/logo.png';
 import '../App.css';
 import Login from './Login';
 
@@ -13,22 +13,25 @@ function HomePage({ isLoggedIn, setIsLoggedIn }) {
   };
 
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Welcome to SeedSwap!</p>
+    <div className="home-page">
+      <header className="App-header">
+        <p className="welcome">Welcome to</p>
+        <p className="seedswap">SeedSwap!</p>
 
-      <nav>
-          <button onClick={() => setShowLogin(true)}>Log In</button>
-          <button onClick={() => navigate('/signup')}>Sign Up</button>
-      </nav>
+        <nav>
+          <button className="login-btn" onClick={() => setShowLogin(true)}>LOG IN</button>
+          <button className="signup-btn" onClick={() => navigate('/signup')}>SIGN UP</button>
+        </nav>
 
-      {showLogin && (
-        <Login
-          onLogin={() => setIsLoggedIn(true)}
-          onClose={() => setShowLogin(false)}
-        />
-      )}
-    </header>
+        {showLogin && (
+          <Login
+            onLogin={() => setIsLoggedIn(true)}
+            onClose={() => setShowLogin(false)}
+          />
+        )}
+        <img src={logo} className="App-logo" alt="logo" />
+      </header>
+    </div>
   );
 }
 
