@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import CreateAvatar from './pages/CreateAvatar';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
+import ChatRoom from './pages/ChatRoom';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/create-avatar" element={<CreateAvatar />} />
+          <Route path="/chatroom" element={<ChatRoom />} />
         </Routes>
       </div>
     </Router>
