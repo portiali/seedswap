@@ -4,17 +4,61 @@ const User = require('../models/User');
 // const Seedbook = require('../models/Seedbook');
 // const Garden = require('../models/Garden');
 
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Check if both email and password are provided
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+
+    // Find user by email
+    const user = await User.findOne({ email });
+
+    // Check if user exists
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if the provided password matches the stored password (plain-text comparison)
+    if (user.password !== password) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    // If credentials match, return success message or user data (exclude password for security)
+    return res.status(200).json({
+      message: 'Login successful',
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        location: user.location,
+        latitude: user.latitude,
+        longitude: user.longitude,
+        // Optionally, you can return a token (JWT) for authentication purposes
+      }
+    });
+  } catch (err) {
+    console.error('Error during login:', err);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+
 const createUser = async (req, res) => {
   try {
     //removed ownedSeeds part of it
-    const { name, location, latitude, longitude, email } = req.body;
+    const { name, location, latitude, longitude, email, password } = req.body;
 
     const newUser = new User({
       name,
       location,     // Now a string like "New York, NY"
       latitude,     // Number
       longitude,    // Number
-      email
+      email,
+      password
     //   ownedSeeds    // Should be array of { seedId, quantity }
     });
 
@@ -27,25 +71,35 @@ const createUser = async (req, res) => {
 };
 
 
-// const createSeedbook = async (req, res) => {
+
+// const getUser = async (req, res) => {
 //   try {
-//     const { userId, seeds } = req.body;
+//     // Assuming you're using email to fetch the user. You can change it to user ID if necessary.
+//     const { email } = req.query; // Or use `req.params` or `req.body` depending on your request structure.
 
-//     const newSeedbook = new Seedbook({
-//       userId,
-//       seeds
-//     });
+//     // Find the user in the database by email (you can also use ID if necessary)
+//     const user = await User.findOne({ email });
 
-//     await newSeedbook.save();
-//     res.status(201).json(newSeedbook);
+//     if (!user) {
+//       return res.status(404).json({ message: 'User not found' }); // Respond with error if user is not found
+//     }
+
+//     // Exclude the password from the response to avoid exposing it
+//     const { password, ...userData } = user.toObject(); // Destructure to exclude password
+
+//     // Send the user data excluding the password
+//     res.status(200).json(userData); // Respond with user information
 //   } catch (err) {
-//     console.error('Error creating seedbook:', err);
-//     res.status(500).json({ error: 'Failed to create seedbook' });
+//     // Handle any other errors that may occur
+//     console.error(err);
+//     res.status(500).json({ message: 'Internal Server Error' });
 //   }
 // };
 
 module.exports = { 
-    createUser
+    createUser,
+    // getUser,
+    loginUser
 };
 
 
