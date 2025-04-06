@@ -14,6 +14,28 @@
     width: 100%; /* Ensures full width */
     max-width: 1300px;
   }
+
+  .back-btn-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+  }
+  
+  .back-btn {
+    padding: 10px 15px;
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .back-btn:hover {
+    background-color: #303f9f;
+  }
   
   /* Box for each section (Seed Postings & Account Listings) */
   .socialpage-section {
