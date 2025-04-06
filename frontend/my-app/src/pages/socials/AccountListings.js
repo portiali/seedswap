@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import cat from '../../images/cat.png';
+import dog from '../../images/cat.png';
+import cat from '../../images/dog.png';
 import mailbox from "../../images/mail.png";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for programmatic navigation
 import './../styles/SocialPage.css';
 
 function AccountListings() {
-
   const [selectedUser, setSelectedUser] = useState(null);
+  const navigate = useNavigate();  // Initialize useNavigate
 
   // Function to handle the "View Profile" button click
   const handleViewProfile = (user) => {
@@ -28,10 +30,21 @@ function AccountListings() {
     {
       username: "@greenthumb88",
       city: "Evanston, IL",
-      avatar: cat,
+      avatar: dog,
       seedBank: ["Lettuce", "Spinach", "Radish"],
     },
+    {
+      username: "@tomato2eater",
+      city: "Naperville, IL",
+      avatar: cat,
+      seedBank: ["Pineapple", "Spinach", "Radish"],
+    },
   ];
+
+  // Function to handle message click and navigate to ChatRoom
+  const handleMessageClick = () => {
+    navigate(`/chatroom`);  // Navigate to the chatroom of the user
+  };
 
   return (
     <div>
@@ -45,9 +58,14 @@ function AccountListings() {
             <p className="city">{user.city}</p>
             <button onClick={() => handleViewProfile(user)}>View Profile</button>
           </div>
-          <a href="/message/username123" className="message-icon" title="Message User">
-            <img src={mailbox} alt="Message User" className="message-button-img" /> 
-          </a>
+          {/* Use button and onClick for message */}
+          <button 
+            onClick={() => handleMessageClick(user.username)} 
+            className="message-icon" 
+            title="Message User"
+          >
+            <img src={mailbox} alt="Message User" className="message-button-img" />
+          </button>
         </div>
       ))}
 
@@ -73,6 +91,5 @@ function AccountListings() {
     </div>
   );
 }
-
 
 export default AccountListings;
