@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useContext } from "react";
+import { SeedContext } from "./SeedContext";
 import { useNavigate } from 'react-router-dom';
 import './styles/ChatRoom.css';
 import close from '../images/close.png';
@@ -10,12 +12,14 @@ function ChatRoom() {
     { id: 3, name: "FlowerFanatic" }
   ]);
 
+ 
   const [messages, setMessages] = useState({});
   const [selectedUser, setSelectedUser] = useState(null);
   const [userInput, setUserInput] = useState('');
   const [showSwapModal, setShowSwapModal] = useState(false);
   const [yourSeed, setYourSeed] = useState('');
   const [theirSeed, setTheirSeed] = useState('');
+  const { tradedSeeds, removeTradedSeed, addNewSeed } = useContext(SeedContext);
 
   const navigate = useNavigate();
 
@@ -35,11 +39,18 @@ function ChatRoom() {
   };
 
   // Mock seed data for both users
-  const yourSeeds = ['Carrot Packet', 'Tomato Packet', 'Sunflower Packet'];
+  const yourSeeds = tradedSeeds;
   const otherUserSeeds = ['Cucumber Packet', 'Lettuce Packet', 'Radish Packet'];
 
   const handleSwapSubmit = () => {
-    alert(`Requested to swap your "${yourSeed}" with ${selectedUser}'s "${theirSeed}".`);
+    alert(`Your "${yourSeed}" has been swapped with ${selectedUser}'s "${theirSeed}"! Check your updated seedbank`);
+    
+    // Remove your traded seed
+    removeTradedSeed(yourSeed);
+  
+    // Add their seed
+    addNewSeed(theirSeed);
+  
     setShowSwapModal(false);
     setYourSeed('');
     setTheirSeed('');
@@ -119,7 +130,7 @@ function ChatRoom() {
               className="close-icon"
               onClick={() => setShowSwapModal(false)}
               />
-            <h2>Propose a Seed Swap with {selectedUser}</h2>
+            <h2>Trade Seeds with {selectedUser}</h2>
             <div className="dropdowns">
               <div className="swap-box">
                 <label>Your Seed:</label>
@@ -128,7 +139,11 @@ function ChatRoom() {
                   {yourSeeds.map((seed, index) => (
                     <option key={index} value={seed}>{seed}</option>
                   ))}
+                  
                 </select>
+                {yourSeeds.length === 0 && (
+                    <p className="no-seeds-message">You have no seeds put up for trade.</p>
+                )}
               </div>
               <div className="swap-box">
                 <label>{selectedUser}'s Seed:</label>
@@ -145,7 +160,7 @@ function ChatRoom() {
               disabled={!yourSeed || !theirSeed}
               className="confirm-btn"
             >
-              Send Swap Request
+              Swap Seeds!
             </button>
           </div>
         </div>

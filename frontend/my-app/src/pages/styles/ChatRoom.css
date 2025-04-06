@@ -202,3 +202,9 @@ button:hover {
   border-radius: 8px;
   cursor: pointer;
 }
+
+.no-seeds-message {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
