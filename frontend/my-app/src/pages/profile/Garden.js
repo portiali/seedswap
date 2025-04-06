@@ -1,9 +1,22 @@
 import { useEffect, useState } from "react";
-import flowerImage from "../../images/flower.png"; // Placeholder for the flower image
+import carrotImage from "../../images/carrot.png";
+import tomatoImage from "../../images/tomato.png";
+import cornImage from "../../images/corn.png";
+import sunflowerImage from "../../images/sunflower.png";
+import cabbageImage from "../../images/cabbage.png";
 import '../styles/Garden.css'
+
 
 function Garden({ plantedSeeds = [] }) {
   const [flowers, setFlowers] = useState([]);
+
+  const seedImageMap = {
+    Carrot: carrotImage,
+    Tomato: tomatoImage,
+    Corn: cornImage,
+    Sunflower: sunflowerImage,
+    Cabbage: cabbageImage,
+  };
 
   const getRandomPosition = () => {
     const x = Math.random() * 90; // Random X position (0% to 90%)
@@ -40,7 +53,7 @@ function Garden({ plantedSeeds = [] }) {
           className="flower"
           style={{ left: `${flower.x}%`, top: `${flower.y}%` }}
         >
-          <img src={flowerImage} alt="Flower" className="flower-image" />
+          <img src={seedImageMap[flower.seedName]} alt={flower.seedName} className="flower-image" />
           <div className="flower-tooltip">{flower.seedName}</div>
         </div>
       ))}
