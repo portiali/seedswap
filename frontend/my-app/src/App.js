@@ -7,10 +7,10 @@ import logo from './images/seed.png';
 import './App.css';
 
 import Signup from './Signup';
-import Login from './Login';
-import ProfilePage from './ProfilePage';
-import HomePage from './HomePage';
-import CreateAvatar from './CreateAvatar';
+import Login from './pages/Login';
+import ProfilePage from './pages/ProfilePage';
+import HomePage from './pages/HomePage';
+import CreateAvatar from './pages/CreateAvatar';
 
 
 function App() {

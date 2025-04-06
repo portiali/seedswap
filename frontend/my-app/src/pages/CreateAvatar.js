@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import rabbitImage from './images/rabbit.png';
-import catImage from './images/cat.png';
-import dogImage from './images/dog.png';
-import bearImage from './images/bear.png';
+import rabbitImage from '../images/rabbit.png';
+import catImage from '../images/cat.png';
+import dogImage from '../images/dog.png';
+import bearImage from '../images/bear.png';
 
 const avatarList = [
   { name: 'Rabbit', image: rabbitImage },

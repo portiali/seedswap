@@ -1,6 +1,6 @@
 // Login.js
 import React from 'react';
-import './Login.css'; // for styling the popup
+import './styles/Login.css'; // for styling the popup
 import { useNavigate } from 'react-router-dom';
 
 function Login({ onClose, onLogin }) {

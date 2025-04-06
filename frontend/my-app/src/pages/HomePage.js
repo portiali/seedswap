@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from './images/seed.png';
-import './App.css';
+import logo from '../images/seed.png';
+import '../App.css';
 import Login from './Login';
 
 function HomePage({ isLoggedIn, setIsLoggedIn }) {

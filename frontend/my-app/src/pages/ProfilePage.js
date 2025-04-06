@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Garden from "./pages/profile/Garden";
-import SeedBank from "./pages/profile/SeedBank";
+import Garden from "./profile/Garden";
+import SeedBank from "./profile/SeedBank";
 import { useNavigate } from 'react-router-dom';
-import './ProfilePage.css'; 
+import './styles/ProfilePage.css'; 
 
 function ProfilePage() {
     const username = ["Maria"];
