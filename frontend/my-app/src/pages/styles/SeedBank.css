@@ -46,6 +46,7 @@
 }
 
 .seed-item {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,6 +55,26 @@
   font-size: 1rem;
   transition: background-color 0.3s ease;
 }
+
+.keep-btn {
+  position: absolute;
+  right: 3rem; /* space it to the left of the checkbox */
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.traded:hover .keep-btn {
+  opacity: 1;
+}
+
 
 .seed-item span {
   color: #111827;
@@ -114,10 +135,12 @@
 }
 
 .add-btn {
-  background-color: #f97316; /* orange-500 */
+  background-color: #f97316 !important; /* orange-500 */
+  color: white;
 }
+
 .add-btn:hover {
-  background-color: #ea580c; /* orange-600 */
+  background-color: #ea580c !important; /* orange-600 */
 }
 
 .delete-btn {
@@ -132,4 +155,33 @@
 }
 .confirm-btn:hover {
   background-color: #059669; /* emerald-600 */
+}
+
+/* add buttons styling */
+.confirm-btn,
+.cancel-btn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-btn {
+  background-color: #10b981; /* emerald-500 */
+  color: white;
+}
+.confirm-btn:hover {
+  background-color: #059669; /* emerald-600 */
+}
+
+.cancel-btn {
+  background-color: #9ca3af; /* gray-400 */
+  color: white;
+}
+.cancel-btn:hover {
+  background-color: #6b7280; /* gray-600 */
 }

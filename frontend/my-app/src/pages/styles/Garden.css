@@ -1,0 +1,5 @@
+.garden-image {
+    width: 50%;  /* Image will be 50% of the container's width */
+    height: auto;  /* Maintain aspect ratio */
+}
+  

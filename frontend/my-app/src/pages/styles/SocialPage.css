@@ -1,0 +1,99 @@
+/* Ensure the parent container takes the full width of the screen */
+.socialpage-container {
+    color: pink;
+    display: flex;
+    justify-content: space-between; /* Space out the sections */
+    gap: 20px; /* Optional: space between the boxes */
+    margin: 40px auto; /* Optional: centered container with margin */
+    max-width: 1200px; /* Optional: to control the overall width */
+    width: 100%; /* Ensures full width */
+  }
+  
+  /* Box for each section (Seed Postings & Account Listings) */
+  .socialpage-section {
+    width: 48%; /* Makes each box 48% of the container's width */
+    height: 500px; /* Set height as needed */
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-sizing: border-box; /* Includes padding/border in width/height */
+    overflow-y: auto;
+  }
+  
+  .posting-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: white;
+  }
+
+  /* Ensure the parent container takes up 48% of the container width */
+.seed-postings {
+    flex: 0 0 48%; /* Avoid shrinking and ensure it takes up 48% of the container */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
+    gap: 30px; /* Space between items */
+    width: 100%; /* Ensure grid takes full width */
+}
+
+/* Make the seed-posting squares */
+.seed-posting {
+    width: 100%; /* Take full width of the grid item */
+    padding-top: 100%; /* This will force the height to match the width */
+    background-color: lightgreen;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: relative; /* Required for absolute positioning of content inside */
+}
+
+.seed-posting p {
+  white-space: nowrap;
+  margin-top: 40px;
+  position: absolute;
+  text-align: center;
+  font-size: 16px;
+  color: black;
+}
+
+/* Ensure responsive behavior */
+@media (max-width: 1200px) {
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on medium screens */
+    }
+}
+
+@media (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on very small screens */
+    }
+}
+
+/* Button styles */
+button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
