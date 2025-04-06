@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Garden from "./Garden";
 import SeedBank from "./SeedBank";
+import ChatRoom from "../ChatRoom/Page";
 
 function HomePage() {
     const username = ["Maria"];
@@ -12,6 +13,7 @@ function HomePage() {
             <div className="components-container">
                 <Garden />
                 <SeedBank />
+                <ChatRoom />
             </div>
         </div>
     );

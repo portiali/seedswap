@@ -6,8 +6,10 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 // import Login from './Login';
 // import AvatarCustomization from './AvatarCustomization';
 // import HomePage from './HomePage';
-import Garden from './pages/Home/Garden';
-import SeedBank from './pages/Home/SeedBank';
+// import Garden from './pages/Home/Garden';
+// import SeedBank from './pages/Home/SeedBank';
+import HomePage from './pages/Home/Page';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,8 +37,7 @@ function App() {
         >
           Learn React
         </a>
-        <Garden/>
-        <SeedBank/>
+        <HomePage/>
       </header>
     </div>
   );
