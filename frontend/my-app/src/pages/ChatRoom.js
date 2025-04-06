@@ -4,6 +4,7 @@ import { SeedContext } from "./SeedContext";
 import { useNavigate } from 'react-router-dom';
 import './styles/ChatRoom.css';
 import close from '../images/close.png';
+import { getSeedCompatibility } from '../openRouterService';
 
 function ChatRoom() {
   const [users] = useState([
@@ -42,15 +43,52 @@ function ChatRoom() {
   const yourSeeds = tradedSeeds;
   const otherUserSeeds = ['Cucumber Packet', 'Lettuce Packet', 'Radish Packet'];
 
-  const handleSwapSubmit = () => {
+  const handleSwapSubmit = async () => {
+    // Add the loading message
+    setMessages((prevMessages) => {
+      const userMessages = prevMessages[selectedUser] || [];
+      return {
+        ...prevMessages,
+        [selectedUser]: [
+          ...userMessages,
+          { user: 'system', text: 'Loading compatibility...', timestamp: new Date() }
+        ]
+      };
+    });
+
+    // Fetch compatibility
+    const compatibilityMessage = await getSeedCompatibility(yourSeed, theirSeed);
+
+    // Replace the loading message with actual compatibility message
+    setMessages((prevMessages) => {
+      const userMessages = prevMessages[selectedUser] || [];
+      const updatedMessages = [...userMessages];
+      // Replace the last message if it was the loading one
+      if (updatedMessages.length > 0 && updatedMessages[updatedMessages.length - 1].text === 'Loading compatibility...') {
+        updatedMessages[updatedMessages.length - 1] = {
+          user: selectedUser,
+          text: compatibilityMessage,
+          timestamp: new Date()
+        };
+      } else {
+        updatedMessages.push({
+          user: selectedUser,
+          text: compatibilityMessage,
+          timestamp: new Date()
+        });
+      }
+
+      return {
+        ...prevMessages,
+        [selectedUser]: updatedMessages
+      };
+    });
+
     alert(`Your "${yourSeed}" has been swapped with ${selectedUser}'s "${theirSeed}"! Check your updated seedbank`);
-    
-    // Remove your traded seed
+
     removeTradedSeed(yourSeed);
-  
-    // Add their seed
     addNewSeed(theirSeed);
-  
+
     setShowSwapModal(false);
     setYourSeed('');
     setTheirSeed('');
