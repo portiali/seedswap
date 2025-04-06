@@ -5,7 +5,7 @@
 ---
 # Contributors
 Portia Li, Grace He, Mariana Ma, Kaitlyn Wang
-Northwestern University '27
+(Northwestern '27)
 
 ---
 ## 🌍 Features
