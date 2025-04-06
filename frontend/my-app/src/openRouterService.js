@@ -20,7 +20,7 @@ export const getSeedCompatibility = async (seed1, seed2) => {
       },
       {
         headers: {
-          Authorization: `Bearer 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`,
+          Authorization: `Bearer ${process.env.API_KEY}`,
           'Content-Type': 'application/json',
         },
       }

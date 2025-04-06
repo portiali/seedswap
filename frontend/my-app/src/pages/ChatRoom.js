@@ -66,13 +66,13 @@ function ChatRoom() {
       // Replace the last message if it was the loading one
       if (updatedMessages.length > 0 && updatedMessages[updatedMessages.length - 1].text === 'Loading compatibility...') {
         updatedMessages[updatedMessages.length - 1] = {
-          user: selectedUser,
+          user: 'Farmer-bot',
           text: compatibilityMessage,
           timestamp: new Date()
         };
       } else {
         updatedMessages.push({
-          user: selectedUser,
+          user: 'Farmer-bot',
           text: compatibilityMessage,
           timestamp: new Date()
         });
