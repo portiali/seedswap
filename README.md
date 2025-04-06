@@ -3,7 +3,11 @@
 **SeedSwap** is a community-driven web app that allows green thumbs of all kinds—novice gardeners to master planters—to **swap seeds** and **connect with other plant lovers** around the world. Whether you're overflowing with tomato seeds or hunting for that rare succulent, SeedSwap is your digital greenhouse for growing connections.
 
 ---
+# Contributors
+Portia Li, Grace He, Mariana Ma, Kaitlyn Wang
+Northwestern University '27
 
+---
 ## 🌍 Features
 
 - 🔁 **Seed Swapping**: Trade seeds with nearby users or across regions.
