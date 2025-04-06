@@ -7,14 +7,15 @@ const User = require('../models/User');
 const createUser = async (req, res) => {
   try {
     //removed ownedSeeds part of it
-    const { name, location, latitude, longitude, email } = req.body;
+    const { name, location, latitude, longitude, email, password } = req.body;
 
     const newUser = new User({
       name,
       location,     // Now a string like "New York, NY"
       latitude,     // Number
       longitude,    // Number
-      email
+      email,
+      password
     //   ownedSeeds    // Should be array of { seedId, quantity }
     });
 
