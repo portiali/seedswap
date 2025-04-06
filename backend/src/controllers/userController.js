@@ -47,6 +47,8 @@ const loginUser = async (req, res) => {
 
 
 
+
+
 const createUser = async (req, res) => {
   try {
     //removed ownedSeeds part of it
@@ -69,6 +71,55 @@ const createUser = async (req, res) => {
     res.status(500).json({ error: 'Failed to create user' });
   }
 };
+
+
+
+
+// assume frontend sends over json with userid for swap with another user in DB
+// write a swapuser function that will swap seeds based on seedid by adding to each users
+// seed collection and deleting from the origina users seed collection
+const swapUserSeeds = async (req, res) => {
+  try {
+    const { userAId, userBId, seedIdFromA, seedIdFromB } = req.body;
+
+    const userA = await User.findById(userAId);
+    const userB = await User.findById(userBId);
+
+    if (!userA || !userB) {
+      return res.status(404).json({ message: 'One or both users not found' });
+    }
+
+    // Find the seeds in each user's collection
+    const seedFromAIndex = userA.ownedSeeds.findIndex(seed => seed.seedId.toString() === seedIdFromA);
+    const seedFromBIndex = userB.ownedSeeds.findIndex(seed => seed.seedId.toString() === seedIdFromB);
+
+    if (seedFromAIndex === -1 || seedFromBIndex === -1) {
+      return res.status(404).json({ message: 'One or both seeds not found for the users' });
+    }
+
+    // Extract seed entries
+    const seedFromA = userA.ownedSeeds[seedFromAIndex];
+    const seedFromB = userB.ownedSeeds[seedFromBIndex];
+
+    // Swap: Add seedFromA to userB, and seedFromB to userA
+    userB.ownedSeeds.push(seedFromA);
+    userA.ownedSeeds.push(seedFromB);
+
+    // Remove original seed entries
+    userA.ownedSeeds.splice(seedFromAIndex, 1);
+    userB.ownedSeeds.splice(seedFromBIndex, 1);
+
+    await userA.save();
+    await userB.save();
+
+    res.status(200).json({ message: 'Seeds successfully swapped', userA, userB });
+
+  } catch (err) {
+    console.error('Swap error:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 
 
 
