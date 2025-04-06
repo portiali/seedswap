@@ -1,7 +1,7 @@
 
 
 const User = require('../models/User');
-// const Seedbook = require('../models/Seedbook');
+const Seedbook = require('../models/Seedbook');
 // const Garden = require('../models/Garden');
 
 const loginUser = async (req, res) => {
@@ -120,37 +120,57 @@ const swapUserSeeds = async (req, res) => {
   }
 };
 
+const addSeedToUser = async (req, res) => {
+  try {
+    const { userId, seedId, status } = req.body;
+
+    if (!userId || !seedId) {
+      return res.status(400).json({ message: 'userId and seedId are required' });
+    }
+
+    // Optional status, defaults to 'up_for_trade'
+    const seedStatus = status || 'up_for_trade';
+
+    // Check if seedbook exists for user
+    let seedbook = await Seedbook.findOne({ userId });
+
+    if (!seedbook) {
+      // If not, create one
+      seedbook = new Seedbook({
+        userId,
+        seeds: [{ seedId, status: seedStatus }]
+      });
+    } else {
+      // Check if this seed is already in the seedbook
+      const existing = seedbook.seeds.find(seed => seed.seedId.toString() === seedId);
+
+      if (existing) {
+        // Optionally update status
+        existing.status = seedStatus;
+      } else {
+        // Add new seed to seedbook
+        seedbook.seeds.push({ seedId, status: seedStatus });
+      }
+    }
+
+    await seedbook.save();
+
+    res.status(200).json({ message: 'Seed added to seedbook successfully', seedbook });
+
+  } catch (err) {
+    console.error('Error adding seed to seedbook:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
 
-
-// const getUser = async (req, res) => {
-//   try {
-//     // Assuming you're using email to fetch the user. You can change it to user ID if necessary.
-//     const { email } = req.query; // Or use `req.params` or `req.body` depending on your request structure.
-
-//     // Find the user in the database by email (you can also use ID if necessary)
-//     const user = await User.findOne({ email });
-
-//     if (!user) {
-//       return res.status(404).json({ message: 'User not found' }); // Respond with error if user is not found
-//     }
-
-//     // Exclude the password from the response to avoid exposing it
-//     const { password, ...userData } = user.toObject(); // Destructure to exclude password
-
-//     // Send the user data excluding the password
-//     res.status(200).json(userData); // Respond with user information
-//   } catch (err) {
-//     // Handle any other errors that may occur
-//     console.error(err);
-//     res.status(500).json({ message: 'Internal Server Error' });
-//   }
-// };
 
 module.exports = { 
     createUser,
     // getUser,
-    loginUser
+    loginUser,
+    swapUserSeeds,
+    addSeedToUser
 };
 
 
