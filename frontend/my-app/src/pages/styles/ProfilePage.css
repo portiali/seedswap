@@ -9,14 +9,14 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 20px; 
+  padding: 10px 20px ; 
   font-family: bubbly; 
 }
 
 .username {
-  font-size: 30px !important;  /* Adjust the size as needed */
+  font-size: 50px !important;  /* Adjust the size as needed */
   color: #333; /* You can adjust the color too */
-  font-family: pixel; 
+  font-family: bubbly !important; 
 }
   
 .profile-image {
@@ -35,10 +35,11 @@
 
 .social-buttons-container {
   position: absolute;
-  top: 20px; /* Adjust distance from the top */
-  right: 20px; /* Adjust distance from the right */
+  top: 30px; /* Adjust distance from the top */
+  right: 70px; /* Adjust distance from the right */
   display: flex;
-  gap: 10px; /* Space between the buttons */
+  gap: 20px; /* Space between the buttons */
+  margin-top: 20px; 
 }
 
 .socialpage-button, .chatroom-button {
@@ -48,6 +49,8 @@
   border-radius: 0.375rem;
   cursor: pointer;
   font-weight: bold;
+  font-family: pixel;
+  font-size: 1rem; 
   transition: background-color 0.3s ease;
 }
 
@@ -69,10 +72,10 @@
 
 .seed-bank {
   width: 48%; /* Each component takes up half of the container */
-  background-color: white;
+  height: 0px; 
+  background-color: rgba(255, 255, 255, 0);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .seed-bank {
