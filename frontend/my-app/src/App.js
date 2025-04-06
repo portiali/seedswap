@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from './images/seed.png';
 import './App.css';
 
-import Signup from './Signup';
+import Signup from './pages/Signup';
 import Login from './pages/Login';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
