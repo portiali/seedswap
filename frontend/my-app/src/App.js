@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import ChatRoom from './pages/ChatRoom';
 import SocialPage from './pages/SocialPage'; 
-
+import { SeedProvider } from "./pages/SeedContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,19 +22,21 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route exact path="/" element={<HomePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
-          <Route path="/login" element={<Login onLogin={handleLogin}/>} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/create-avatar" element={<CreateAvatar />} />
-          <Route path="/chatroom" element={<ChatRoom />} />
-          <Route path="/social" element={<SocialPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <SeedProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route exact path="/" element={<HomePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
+            <Route path="/login" element={<Login onLogin={handleLogin}/>} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/create-avatar" element={<CreateAvatar />} />
+            <Route path="/chatroom" element={<ChatRoom />} />
+            <Route path="/social" element={<SocialPage />} />
+          </Routes>
+        </div>
+      </Router>
+    </SeedProvider>
   );
 }
 
