@@ -1,4 +1,4 @@
-import b from "./book.png";
+import b from "../../images/book.png";
 function SeedBank() {
     return (
       <div className="SeedBank">

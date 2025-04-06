@@ -1,23 +1,26 @@
-import logo from './pages/Home/seed.png';
-import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+
+import logo from './images/seed.png';
+import './App.css';
+
 import Signup from './Signup';
 import Login from './Login';
+import ProfilePage from './ProfilePage';
 // import AvatarCustomization from './AvatarCustomization';
-// import HomePage from './HomePage';
-import Garden from './pages/Home/Garden';
-import SeedBank from './pages/Home/SeedBank';
+import HomePage from './HomePage';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
 
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
 
+  // not used...
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
@@ -25,32 +28,13 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Welcome to SeedSwap! 
-          </p>
-          <nav>
-            <Link to="/login">
-              <button>Log In</button>
-            </Link>
-            <Link to="/signup">
-              <button>Sign Up</button>
-            </Link>
-          </nav>
-
-          <Garden/>
-          <SeedBank/>
-        </header>
+        <Routes>
+          <Route exact path="/" element={<HomePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
+          <Route path="/login" element={<Login onLogin={handleLogin}/>} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Routes>
       </div>
-
-      <Routes>
-        <Route path="/" element={<p>Home Page - Welcome to SeedSwap!</p>} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/garden" element={<Garden />} />
-        <Route path="/seedbank" element={<SeedBank />} />
-      </Routes>
     </Router>
   );
 }
