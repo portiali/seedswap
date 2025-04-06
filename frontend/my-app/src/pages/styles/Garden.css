@@ -1,5 +1,37 @@
-.garden-image {
-    width: 50%;  /* Image will be 50% of the container's width */
-    height: auto;  /* Maintain aspect ratio */
+/* Garden.css */
+.garden-container {
+    position: relative;
+    width: 100vh; /* Full width of the window */
+    height: 80vh; /* 80% of the height of the window */
+    overflow: hidden; /* To make sure nothing goes outside */
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #a8c38a;
+  }
+  
+.flower {
+  position: absolute;
+  transition: all 0.3s ease-in-out;
 }
+
+.flower-image {
+  width: 100px;
+  height: 100px;
+}
+
+.flower-tooltip {
+  position: absolute;
+  top: -20px;
+  background-color: white;
+  padding: 2px 5px;
+  border: 1px solid #ccc;
+  font-size: 0.75rem;
+}
+
+.garden-header {
+  text-align: center;
+  flex: 1;
+  padding: 20px; 
+}
+
   
