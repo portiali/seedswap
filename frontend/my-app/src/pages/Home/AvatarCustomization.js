@@ -72,7 +72,7 @@ const AvatarCustomization = () => {
         </>
       ) : (
         <div className="text-center mt-10">
-          <p className="text-xl">🎉 You chose the {selected.name}!</p>
+          <p className="text-xl">You chose the {selected.name}!</p>
           <img
             src={selected.image}
             alt={selected.name}

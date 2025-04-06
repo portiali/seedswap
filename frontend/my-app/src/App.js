@@ -8,6 +8,7 @@ import AvatarCustomization from './pages/Home/AvatarCustomization';
 // import HomePage from './HomePage';
 import Garden from './pages/Home/Garden';
 import SeedBank from './pages/Home/SeedBank';
+import SocialPage from './pages/Social/SocialPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,6 +39,7 @@ function App() {
         <Garden/>
         <SeedBank/>
         <AvatarCustomization/>
+        <SocialPage/>
       </header>
     </div>
   );
