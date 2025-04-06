@@ -1,76 +1,132 @@
 .chatroom {
-  font-family: Arial, sans-serif;
-  background-color: #f0f8f4;
-  min-height: 100vh;
-  padding: 20px;
-  color: #3e3e3e;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.title {
-  text-align: center;
-  font-size: 2rem;
-  color: #2f4f2f;
-  margin-bottom: 20px;
+.back-btn-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.back-btn {
+  padding: 10px 15px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.back-btn:hover {
+  background-color: #303f9f;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  margin-top: 60px; /* Add space for the back button */
+}
+
+.left-panel {
+  width: 30%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.user-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  margin: 5px 0;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.user:hover {
+  background-color: #b0bec5;
+}
+
+.selected {
+  background-color: #8c9eff;
+  font-weight: bold;
+}
+
+.right-panel {
+  width: 70%;
+  padding: 20px;
+}
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.5rem;
+  color: #777;
+}
+
+.chatbox {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
 .messages {
-  background-color: #ffffff;
-  border: 2px solid #a3b18a;
-  padding: 15px;
-  margin-bottom: 20px;
-  height: 300px;
+  max-height: 400px;
   overflow-y: auto;
-  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .message {
-  padding: 8px;
   margin-bottom: 10px;
-  border-radius: 4px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .user1 {
-  background-color: #d6eadf;
-  border-left: 4px solid #588157;
+  background-color: #d1c4e9;
 }
 
 .user2 {
-  background-color: #f3eac2;
-  border-left: 4px solid #a98467;
+  background-color: #c8e6c9;
 }
 
 .input-area {
   display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.input-box {
-  display: flex;
-  flex-direction: column;
   gap: 10px;
-  width: 45%;
 }
 
-input[type="text"] {
+input {
+  flex: 1;
   padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
   font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 button {
-  padding: 10px;
-  background-color: #6b8e23;
+  padding: 10px 15px;
+  background-color: #3f51b5;
   color: white;
   border: none;
   border-radius: 5px;
-  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #556b2f;
+  background-color: #303f9f;
 }

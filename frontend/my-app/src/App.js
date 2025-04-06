@@ -6,6 +6,7 @@ import CreateAvatar from './pages/CreateAvatar';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import ChatRoom from './pages/ChatRoom';
+import SocialPage from './pages/SocialPage'; 
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/create-avatar" element={<CreateAvatar />} />
           <Route path="/chatroom" element={<ChatRoom />} />
+          <Route path="/social" element={<SocialPage />} />
         </Routes>
       </div>
     </Router>
