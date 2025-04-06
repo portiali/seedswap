@@ -1,0 +1,76 @@
+.chatroom {
+  font-family: Arial, sans-serif;
+  background-color: #f0f8f4;
+  min-height: 100vh;
+  padding: 20px;
+  color: #3e3e3e;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  color: #2f4f2f;
+  margin-bottom: 20px;
+}
+
+.messages {
+  background-color: #ffffff;
+  border: 2px solid #a3b18a;
+  padding: 15px;
+  margin-bottom: 20px;
+  height: 300px;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+.message {
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.user1 {
+  background-color: #d6eadf;
+  border-left: 4px solid #588157;
+}
+
+.user2 {
+  background-color: #f3eac2;
+  border-left: 4px solid #a98467;
+}
+
+.input-area {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 45%;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px;
+  background-color: #6b8e23;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #556b2f;
+}

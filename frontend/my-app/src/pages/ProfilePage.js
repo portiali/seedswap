@@ -4,6 +4,7 @@ import SeedBank from "./profile/SeedBank";
 import { useNavigate } from 'react-router-dom';
 import './styles/ProfilePage.css'; 
 
+
 function ProfilePage() {
     const username = ["Maria"];
     const navigate = useNavigate();

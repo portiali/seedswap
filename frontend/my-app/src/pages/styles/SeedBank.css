@@ -1,42 +1,4 @@
-
-.home-page {
-    background-color: #e0f7fa; /* Light blue background */
-    padding: 20px;
-    font-family: sans-serif;
-    min-height: 100vh;
-  }
-  
-  .header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .username {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #00796b; /* Darker shade of teal */
-  }
-  
-  .components-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem; /* Adds space between the components */
-  }
-  
-  .garden, .seed-bank {
-    width: 48%; /* Each component takes up half of the container */
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* If you want to add more specific styling to each component */
-  .garden {
-    background-color: #f1f8e9; /* Light green for Garden */
-  }
-  
-  .seed-bank {
+.seed-bank {
     padding: 24px;
     font-family: sans-serif;
   }
@@ -137,5 +99,3 @@
   .add-btn:hover {
       background-color: #2563eb; /* blue-600 */
     }
-
-
