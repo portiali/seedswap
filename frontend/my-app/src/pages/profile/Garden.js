@@ -1,5 +1,5 @@
 import { useState } from "react";
-import g from "./garden.png";
+import g from "../../images/garden.png";
 
 function Garden() {
   return (

@@ -39,6 +39,13 @@ app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
+app.get('/logout', (req, res) => {
+  res.logout({
+    returnTo: process.env.LOGOUT_REDIRECT_URL || 'http://localhost:3001', // Redirect after logout
+  });
+});
+
+
 
 
 
