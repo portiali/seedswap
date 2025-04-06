@@ -1,21 +1,46 @@
-// mongoose schema for user
-
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const userSchema = new mongoose.Schema({
-  auth0Id: { type: String, required: true, unique: true },
-  name: String,
-  email: { type: String, required: true, unique: true },
-  location: {
-    latitude: Number,
-    longitude: Number,
+const userSchema = new Schema({
+  name: {
+    type: String,
+    required: true
   },
-  ownedSeeds: [
-    {
-      seedId: mongoose.Schema.Types.ObjectId,
-      quantity: Number
-    }
-  ],
-}, { timestamps: true });
+  location: {
+    type: String, // Human-readable address (e.g., "New York, NY")
+    required: true
+  },
+  latitude: {
+    type: Number,
+    required: true
+  },
+  longitude: {
+    type: Number,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  }
+  // ownedSeeds: [
+  //   {
+  //     seedId: {
+  //       type: Schema.Types.ObjectId,
+  //       ref: 'Seed',
+  //       required: true
+  //     },
+  //     quantity: {
+  //       type: Number,
+  //       required: true,
+  //       min: 1
+  //     }
+  //   }
+  // ]
+}, {
+  timestamps: true
+});
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
