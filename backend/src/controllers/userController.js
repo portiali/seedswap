@@ -26,9 +26,6 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser };
-
-
 
 // const createSeedbook = async (req, res) => {
 //   try {
@@ -47,11 +44,9 @@ module.exports = { createUser };
 //   }
 // };
 
-// module.exports = { createSeedbook };
-
-
-
-
+module.exports = { 
+    createUser
+};
 
 
 

@@ -6,11 +6,11 @@ const { Schema } = mongoose;
 const seedSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: false
   },
   type: {
     type: String,
-    required: true
+    required: false
   },
   description: {
     type: String
