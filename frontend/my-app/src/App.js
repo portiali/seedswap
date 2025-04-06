@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-// import Signup from './Signup';
-// import Login from './Login';
-// import AvatarCustomization from './AvatarCustomization';
-// import HomePage from './HomePage';
+import Signup from './Signup';
+import Login from './Login';
+import CreateAvatar from './pages/CreateAvatar';
+import HomePage from './HomePage';
 import Garden from './pages/Home/Garden';
 import SeedBank from './pages/Home/SeedBank';
 
