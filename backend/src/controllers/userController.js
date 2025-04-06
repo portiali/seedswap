@@ -78,10 +78,12 @@ const createUser = async (req, res) => {
 // assume frontend sends over json with userid for swap with another user in DB
 // write a swapuser function that will swap seeds based on seedid by adding to each users
 // seed collection and deleting from the origina users seed collection
+
 const swapUserSeeds = async (req, res) => {
   try {
     const { userAId, userBId, seedIdFromA, seedIdFromB } = req.body;
 
+    // Check if both users exist in the database
     const userA = await User.findById(userAId);
     const userB = await User.findById(userBId);
 
@@ -89,30 +91,39 @@ const swapUserSeeds = async (req, res) => {
       return res.status(404).json({ message: 'One or both users not found' });
     }
 
-    // Find the seeds in each user's collection
-    const seedFromAIndex = userA.ownedSeeds.findIndex(seed => seed.seedId.toString() === seedIdFromA);
-    const seedFromBIndex = userB.ownedSeeds.findIndex(seed => seed.seedId.toString() === seedIdFromB);
+    // Now, check the seedbooks for both users by their userId
+    const seedbookA = await Seedbook.findOne({ userId: userAId });
+    const seedbookB = await Seedbook.findOne({ userId: userBId });
+
+    if (!seedbookA || !seedbookB) {
+      return res.status(404).json({ message: 'One or both users\' seedbooks not found' });
+    }
+
+    // Find the seeds in each user's seedbook
+    const seedFromAIndex = seedbookA.seeds.findIndex(seed => seed.seedId.toString() === seedIdFromA);
+    const seedFromBIndex = seedbookB.seeds.findIndex(seed => seed.seedId.toString() === seedIdFromB);
 
     if (seedFromAIndex === -1 || seedFromBIndex === -1) {
-      return res.status(404).json({ message: 'One or both seeds not found for the users' });
+      return res.status(404).json({ message: 'One or both seeds not found in the users\' seedbooks' });
     }
 
     // Extract seed entries
-    const seedFromA = userA.ownedSeeds[seedFromAIndex];
-    const seedFromB = userB.ownedSeeds[seedFromBIndex];
+    const seedFromA = seedbookA.seeds[seedFromAIndex];
+    const seedFromB = seedbookB.seeds[seedFromBIndex];
 
-    // Swap: Add seedFromA to userB, and seedFromB to userA
-    userB.ownedSeeds.push(seedFromA);
-    userA.ownedSeeds.push(seedFromB);
+    // Swap the seeds: Add seedFromA to userB's seedbook and seedFromB to userA's seedbook
+    seedbookB.seeds.push(seedFromA);
+    seedbookA.seeds.push(seedFromB);
 
-    // Remove original seed entries
-    userA.ownedSeeds.splice(seedFromAIndex, 1);
-    userB.ownedSeeds.splice(seedFromBIndex, 1);
+    // Remove the original seeds from the respective seedbooks
+    seedbookA.seeds.splice(seedFromAIndex, 1);
+    seedbookB.seeds.splice(seedFromBIndex, 1);
 
-    await userA.save();
-    await userB.save();
+    // Save the updated seedbooks
+    await seedbookA.save();
+    await seedbookB.save();
 
-    res.status(200).json({ message: 'Seeds successfully swapped', userA, userB });
+    res.status(200).json({ message: 'Seeds successfully swapped', userAId, userBId, seedbookA, seedbookB });
 
   } catch (err) {
     console.error('Swap error:', err);
