@@ -130,3 +130,75 @@ button {
 button:hover {
   background-color: #303f9f;
 }
+
+.swap-btn {
+  margin: 20px auto;
+  display: block;
+  padding: 10px 20px;
+  font-family: pixel;
+  font-size: 16px;
+  background-color: #88cc88;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.swap-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.swap-modal {
+  position: relative;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 400px;
+  text-align: center;
+}
+
+.dropdowns {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.dropdowns select {
+  width: 150px;
+  padding: 5px;
+}
+
+.confirm-btn {
+  background-color: #66bb66;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.cancel-btn {
+  background-color: #ddd;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
