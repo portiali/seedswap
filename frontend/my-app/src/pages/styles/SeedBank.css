@@ -7,6 +7,7 @@
   flex-direction: row;  /* Stack SeedBank and Garden vertically */
   background-color: rgb(255, 209, 221); /* Light background color */
   padding: 40px;
+  border-radius: 20px; 
 }
 
 .seed-bank {
@@ -17,7 +18,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f9fafb;
   max-width: 50%;
-  margin: 0 auto; /* horizontally center the seed-bank in its parent */
+  margin-top: 300px; /* horizontally center the seed-bank in its parent */
   height: 100%; /* optional, helpful for full vertical centering */
   box-sizing: border-box;
 }
@@ -47,6 +48,7 @@
   height: 360px; 
   width: 350px; 
   font-family: pixel; 
+  padding: 10px; 
 }
 
 .seed-list {
@@ -61,7 +63,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 0;
+  padding: 0.75rem ;
   border-bottom: 1px solid #e5e7eb;
   font-size: 1rem;
   transition: background-color 0.3s ease;
@@ -107,7 +109,8 @@
 }
 
 .action-buttons {
-  margin-top: 1.5rem;
+  margin-top: 0.25rem;
+  padding: 10px; 
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
@@ -120,7 +123,7 @@
 .add-btn,
 .delete-btn,
 .confirm-btn {
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1rem;
   border: none;
   color: white;
   border-radius: 0.5rem;

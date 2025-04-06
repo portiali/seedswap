@@ -79,6 +79,10 @@
   font-family: sans-serif;
 }
 
+.seed-item {
+  padding: 10px; 
+}
+
 .seed-bank-header {
   text-align: center;
 }
